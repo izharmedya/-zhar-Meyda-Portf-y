@@ -189,27 +189,28 @@
         </p>
       </div>
 
-      <!-- YouTube Shorts Grid -->
+      <!-- YouTube Shorts Grid (Interactive Zero-Error Poster Cards) -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
         
         <!-- Short 1: Yapay Zeka İşimizi Elimizden Alacak Mı? -->
         <div class="video-card">
-          <div class="relative w-full aspect-[9/16] bg-black rounded-t-xl overflow-hidden">
-            <iframe 
-              src="https://www.youtube-nocookie.com/embed/xlqnHmv5Epg?rel=0&modestbranding=1&playsinline=1" 
-              title="Yapay Zeka İşimizi Elimizden Alacak Mı?" 
-              class="w-full h-full border-0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              loading="lazy"
-              allowfullscreen>
-            </iframe>
+          <div id="yt-container-1" class="video-card-thumb-short" onclick="openYouTubeModal('xlqnHmv5Epg', 'Yapay Zeka İşimizi Elimizden Alacak Mı?', 'YouTube Shorts • Kurgucu & AI Sınırları')">
+            <img src="https://i.ytimg.com/vi/xlqnHmv5Epg/hqdefault.jpg" alt="Yapay Zeka İşimizi Elimizden Alacak Mı?" class="w-full h-full object-cover">
+            <div class="play-overlay">
+              <span class="play-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+            <span class="card-badge font-mono">YouTube Shorts</span>
           </div>
           <div class="video-card-body">
             <div class="text-[12px] font-mono text-ink-muted mb-1">YOUTUBE SHORTS • 9:16</div>
             <h3 class="video-card-title">Yapay Zeka İşimizi Elimizden Alacak Mı?</h3>
             <p class="video-card-desc">Kurgucunun rolü ve yapay zeka araçlarının sınırlarına dair dinamik anlatı.</p>
             <div class="flex items-center justify-between pt-2 border-t border-border-subtle mt-2">
-              <span class="text-[11px] font-mono text-emerald-600 font-medium">● YouTube Canlı Akış</span>
+              <button onclick="playYouTubeInCard('yt-container-1', 'xlqnHmv5Epg', 'Yapay Zeka İşimizi Elimizden Alacak Mı?')" class="text-[12px] font-mono text-ink hover:underline">
+                ▶ Kartta Başlat
+              </button>
               <a href="https://www.youtube.com/shorts/xlqnHmv5Epg" target="_blank" rel="noopener" class="video-card-link text-[12px]">
                 YouTube'da Aç →
               </a>
@@ -219,22 +220,23 @@
 
         <!-- Short 2: Kuleshov’un Etkisi -->
         <div class="video-card">
-          <div class="relative w-full aspect-[9/16] bg-black rounded-t-xl overflow-hidden">
-            <iframe 
-              src="https://www.youtube-nocookie.com/embed/PJEboPZB8kg?rel=0&modestbranding=1&playsinline=1" 
-              title="Kuleshov’un Etkisi" 
-              class="w-full h-full border-0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              loading="lazy"
-              allowfullscreen>
-            </iframe>
+          <div id="yt-container-2" class="video-card-thumb-short" onclick="openYouTubeModal('PJEboPZB8kg', 'Kuleshov’un Etkisi', 'Kurgu Sanatı • Görsel Psikoloji')">
+            <img src="https://i.ytimg.com/vi/PJEboPZB8kg/hqdefault.jpg" alt="Kuleshov’un Etkisi" class="w-full h-full object-cover">
+            <div class="play-overlay">
+              <span class="play-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+            <span class="card-badge font-mono">Kurgu Sanatı</span>
           </div>
           <div class="video-card-body">
             <div class="text-[12px] font-mono text-ink-muted mb-1">KURGU SANATI • 9:16</div>
             <h3 class="video-card-title">Kuleshov’un Etkisi (Kurgu Psikolojisi)</h3>
             <p class="video-card-desc">İki görüntünün bir araya gelişinde oluşan anlam ve kurgunun izleyiciye etkisi.</p>
             <div class="flex items-center justify-between pt-2 border-t border-border-subtle mt-2">
-              <span class="text-[11px] font-mono text-emerald-600 font-medium">● YouTube Canlı Akış</span>
+              <button onclick="playYouTubeInCard('yt-container-2', 'PJEboPZB8kg', 'Kuleshov’un Etkisi')" class="text-[12px] font-mono text-ink hover:underline">
+                ▶ Kartta Başlat
+              </button>
               <a href="https://www.youtube.com/shorts/PJEboPZB8kg" target="_blank" rel="noopener" class="video-card-link text-[12px]">
                 YouTube'da Aç →
               </a>
@@ -244,22 +246,23 @@
 
         <!-- Short 3: Önemli Olan Programları Bilmek Değildir! #içeriküretimi -->
         <div class="video-card">
-          <div class="relative w-full aspect-[9/16] bg-black rounded-t-xl overflow-hidden">
-            <iframe 
-              src="https://www.youtube-nocookie.com/embed/twAMn6voNkU?rel=0&modestbranding=1&playsinline=1" 
-              title="Önemli Olan Programları Bilmek Değildir! #içeriküretimi" 
-              class="w-full h-full border-0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              loading="lazy"
-              allowfullscreen>
-            </iframe>
+          <div id="yt-container-3" class="video-card-thumb-short" onclick="openYouTubeModal('twAMn6voNkU', 'Önemli Olan Programları Bilmek Değildir! #içeriküretimi', 'Kurgu Felsefesi • Anlatı & Ritim')">
+            <img src="https://i.ytimg.com/vi/twAMn6voNkU/hqdefault.jpg" alt="Önemli Olan Programları Bilmek Değildir!" class="w-full h-full object-cover">
+            <div class="play-overlay">
+              <span class="play-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+            <span class="card-badge font-mono">Kurgu Felsefesi</span>
           </div>
           <div class="video-card-body">
             <div class="text-[12px] font-mono text-ink-muted mb-1">KURGU FELSEFESİ • 9:16</div>
             <h3 class="video-card-title">Önemli Olan Programları Bilmek Değildir! #içeriküretimi</h3>
             <p class="video-card-desc">Yazılım bilgisi yerine anlatı, ritim ve kesim mantığının belirleyiciliği.</p>
             <div class="flex items-center justify-between pt-2 border-t border-border-subtle mt-2">
-              <span class="text-[11px] font-mono text-emerald-600 font-medium">● YouTube Canlı Akış</span>
+              <button onclick="playYouTubeInCard('yt-container-3', 'twAMn6voNkU', 'Önemli Olan Programları Bilmek Değildir!')" class="text-[12px] font-mono text-ink hover:underline">
+                ▶ Kartta Başlat
+              </button>
               <a href="https://www.youtube.com/shorts/twAMn6voNkU" target="_blank" rel="noopener" class="video-card-link text-[12px]">
                 YouTube'da Aç →
               </a>
@@ -269,22 +272,23 @@
 
         <!-- Short 4: Yönetmenlerin Kompozisyon Tekniği -->
         <div class="video-card">
-          <div class="relative w-full aspect-[9/16] bg-black rounded-t-xl overflow-hidden">
-            <iframe 
-              src="https://www.youtube-nocookie.com/embed/wRLvr3niq1o?rel=0&modestbranding=1&playsinline=1" 
-              title="Yönetmenlerin Kompozisyon Tekniği" 
-              class="w-full h-full border-0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              loading="lazy"
-              allowfullscreen>
-            </iframe>
+          <div id="yt-container-4" class="video-card-thumb-short" onclick="openYouTubeModal('wRLvr3niq1o', 'Yönetmenlerin Kompozisyon Tekniği', 'Sinematografi • Göz Takibi')">
+            <img src="https://i.ytimg.com/vi/wRLvr3niq1o/hqdefault.jpg" alt="Yönetmenlerin Kompozisyon Tekniği" class="w-full h-full object-cover">
+            <div class="play-overlay">
+              <span class="play-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+            <span class="card-badge font-mono">Sinematografi</span>
           </div>
           <div class="video-card-body">
             <div class="text-[12px] font-mono text-ink-muted mb-1">SİNEMATOGRAFİ • 9:16</div>
             <h3 class="video-card-title">Yönetmenlerin Kompozisyon Tekniği</h3>
             <p class="video-card-desc">Kare içindeki göz takibi, yönlendirme ve görsel denge dinamikleri.</p>
             <div class="flex items-center justify-between pt-2 border-t border-border-subtle mt-2">
-              <span class="text-[11px] font-mono text-emerald-600 font-medium">● YouTube Canlı Akış</span>
+              <button onclick="playYouTubeInCard('yt-container-4', 'wRLvr3niq1o', 'Yönetmenlerin Kompozisyon Tekniği')" class="text-[12px] font-mono text-ink hover:underline">
+                ▶ Kartta Başlat
+              </button>
               <a href="https://www.youtube.com/shorts/wRLvr3niq1o" target="_blank" rel="noopener" class="video-card-link text-[12px]">
                 YouTube'da Aç →
               </a>
@@ -294,22 +298,23 @@
 
         <!-- Short 5: Doğru “Montaj” Nedir? -->
         <div class="video-card">
-          <div class="relative w-full aspect-[9/16] bg-black rounded-t-xl overflow-hidden">
-            <iframe 
-              src="https://www.youtube-nocookie.com/embed/yuaxsrdRpas?rel=0&modestbranding=1&playsinline=1" 
-              title="Doğru “Montaj” Nedir?" 
-              class="w-full h-full border-0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              loading="lazy"
-              allowfullscreen>
-            </iframe>
+          <div id="yt-container-5" class="video-card-thumb-short" onclick="openYouTubeModal('yuaxsrdRpas', 'Doğru “Montaj” Nedir?', 'Kurgu Temelleri • Kesim Mantığı')">
+            <img src="https://i.ytimg.com/vi/yuaxsrdRpas/hqdefault.jpg" alt="Doğru “Montaj” Nedir?" class="w-full h-full object-cover">
+            <div class="play-overlay">
+              <span class="play-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+            <span class="card-badge font-mono">Kurgu Temelleri</span>
           </div>
           <div class="video-card-body">
             <div class="text-[12px] font-mono text-ink-muted mb-1">KURGU TEMELLERİ • 9:16</div>
             <h3 class="video-card-title">Doğru “Montaj” Nedir?</h3>
             <p class="video-card-desc">Gereksiz efektlerden arındırılmış, hikayeye hizmet eden kesim düzeni.</p>
             <div class="flex items-center justify-between pt-2 border-t border-border-subtle mt-2">
-              <span class="text-[11px] font-mono text-emerald-600 font-medium">● YouTube Canlı Akış</span>
+              <button onclick="playYouTubeInCard('yt-container-5', 'yuaxsrdRpas', 'Doğru “Montaj” Nedir?')" class="text-[12px] font-mono text-ink hover:underline">
+                ▶ Kartta Başlat
+              </button>
               <a href="https://www.youtube.com/shorts/yuaxsrdRpas" target="_blank" rel="noopener" class="video-card-link text-[12px]">
                 YouTube'da Aç →
               </a>
@@ -319,22 +324,23 @@
 
         <!-- Short 6: Seçim Yaparak Hikaye Anlatın! -->
         <div class="video-card">
-          <div class="relative w-full aspect-[9/16] bg-black rounded-t-xl overflow-hidden">
-            <iframe 
-              src="https://www.youtube-nocookie.com/embed/NFx4bQWRQTU?rel=0&modestbranding=1&playsinline=1" 
-              title="Seçim Yaparak Hikaye Anlatın!" 
-              class="w-full h-full border-0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              loading="lazy"
-              allowfullscreen>
-            </iframe>
+          <div id="yt-container-6" class="video-card-thumb-short" onclick="openYouTubeModal('NFx4bQWRQTU', 'Seçim Yaparak Hikaye Anlatın!', 'Hikaye Anlatımı • Kurgusal Kararlar')">
+            <img src="https://i.ytimg.com/vi/NFx4bQWRQTU/hqdefault.jpg" alt="Seçim Yaparak Hikaye Anlatın!" class="w-full h-full object-cover">
+            <div class="play-overlay">
+              <span class="play-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+            <span class="card-badge font-mono">Hikaye Anlatımı</span>
           </div>
           <div class="video-card-body">
             <div class="text-[12px] font-mono text-ink-muted mb-1">HİKAYE ANLATIMI • 9:16</div>
             <h3 class="video-card-title">Seçim Yaparak Hikaye Anlatın!</h3>
             <p class="video-card-desc">Kurguda her sahne ve kesim seçimi, anlatıyı ve duyguyu doğrudan inşa eder.</p>
             <div class="flex items-center justify-between pt-2 border-t border-border-subtle mt-2">
-              <span class="text-[11px] font-mono text-emerald-600 font-medium">● YouTube Canlı Akış</span>
+              <button onclick="playYouTubeInCard('yt-container-6', 'NFx4bQWRQTU', 'Seçim Yaparak Hikaye Anlatın!')" class="text-[12px] font-mono text-ink hover:underline">
+                ▶ Kartta Başlat
+              </button>
               <a href="https://www.youtube.com/shorts/NFx4bQWRQTU" target="_blank" rel="noopener" class="video-card-link text-[12px]">
                 YouTube'da Aç →
               </a>

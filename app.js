@@ -295,7 +295,7 @@ function toggleInlinePlay(videoId, button) {
   });
 }
 
-// Modal Video Player
+// Modal Video & YouTube Player
 const modal = document.getElementById('videoModal');
 const modalPlayer = document.getElementById('modalVideoPlayer');
 const modalSource = document.getElementById('modalVideoSource');
@@ -303,38 +303,94 @@ const modalTitle = document.getElementById('modalTitle');
 const modalMeta = document.getElementById('modalMeta');
 const modalExternalLink = document.getElementById('modalExternalLink');
 
+// In-Card Play YouTube
+function playYouTubeInCard(containerId, videoId, title) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  
+  container.innerHTML = `
+    <iframe 
+      src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1" 
+      title="${title}" 
+      class="w-full h-full border-0 rounded-t-xl" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  `;
+}
+
+// Open YouTube Modal
+function openYouTubeModal(videoId, title, meta) {
+  if (!modal) return;
+  modalTitle.textContent = title;
+  modalMeta.textContent = meta;
+  modalExternalLink.href = `https://www.youtube.com/shorts/${videoId}`;
+
+  if (modalPlayer) {
+    modalPlayer.pause();
+    modalPlayer.classList.add('hidden');
+  }
+
+  let iframe = document.getElementById('modalIframePlayer');
+  if (!iframe) {
+    iframe = document.createElement('iframe');
+    iframe.id = 'modalIframePlayer';
+    iframe.className = 'w-full h-[620px] max-h-[75vh] border-0 rounded-lg';
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+    iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    iframe.setAttribute('allowfullscreen', 'true');
+    const modalBody = document.querySelector('.modal-body');
+    if (modalBody) modalBody.appendChild(iframe);
+  }
+
+  iframe.classList.remove('hidden');
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+  modal.classList.remove('hidden');
+}
+
+// Open MP4 Modal
 function openModal(videoSrc, title, meta, externalUrl) {
   if (!modal || !modalPlayer) return;
+
+  const iframe = document.getElementById('modalIframePlayer');
+  if (iframe) {
+    iframe.src = '';
+    iframe.classList.add('hidden');
+  }
 
   modalTitle.textContent = title;
   modalMeta.textContent = meta;
   modalExternalLink.href = externalUrl;
 
+  modalPlayer.classList.remove('hidden');
   modalSource.src = videoSrc;
   modalPlayer.load();
   modal.classList.remove('hidden');
   
   modalPlayer.play().catch(e => {
-    console.log('Autoplay blocked or stream pending:', e);
+    console.log('Autoplay pending:', e);
   });
 }
 
 function closeModal() {
-  if (!modal || !modalPlayer) return;
-  modalPlayer.pause();
-  modalSource.src = '';
+  if (!modal) return;
+  if (modalPlayer) {
+    modalPlayer.pause();
+    if (modalSource) modalSource.src = '';
+    modalPlayer.classList.add('hidden');
+  }
+  const iframe = document.getElementById('modalIframePlayer');
+  if (iframe) {
+    iframe.src = '';
+    iframe.classList.add('hidden');
+  }
   modal.classList.add('hidden');
 }
 
 function handleBackdropClick(event) {
   if (event.target === modal) {
     closeModal();
-  }
-}
-
-function openInstagramModal(reelUrl, title, meta) {
-  if (reelUrl) {
-    window.open(reelUrl, '_blank', 'noopener,noreferrer');
   }
 }
 
