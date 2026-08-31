@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="tr" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>İzhar Medya — Video Kurgu & Portfolyo</title>
+  <meta name="description" content="İzhar Medya video kurgusu, müzik ve ses efektleri kuruluşu, Unreal Engine 3D animasyon ve sosyal medya video portfolyosu.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            surface: '#FBFBF8',
+            'surface-alt': '#F5F5F0',
+            'surface-elevated': '#FFFFFF',
+            ink: '#18181B',
+            'ink-muted': '#71717A',
+            'ink-faint': '#A1A1AA',
+            'border-subtle': 'rgba(24, 24, 27, 0.06)',
+          },
+          fontFamily: {
+            serif: ['Instrument Serif', 'Georgia', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Fonts: Inter, Instrument Serif, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;410;460;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-full flex flex-col bg-surface text-ink antialiased">
+
+  <!-- Header / Navigation (Cofounder Glass Navbar) -->
+  <header class="site-header fixed top-0 left-0 right-0 z-50 flex justify-center py-4 px-4 sm:px-6 transition-all duration-300">
+    <div class="w-full max-w-[1280px] flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="brand-logo text-[22px] sm:text-[26px] font-serif tracking-tight text-white hover:opacity-90 transition-opacity">
+        İzhar Medya
+      </a>
+
+      <!-- Desktop Glass Navigation Pills -->
+      <nav class="hidden md:flex items-center gap-3">
+        <div class="glass-pill-container flex items-center px-3 py-1.5 rounded-lg">
+          <a href="#muzik-kurgu" class="nav-item">Kurgu & Ses</a>
+          <span class="nav-divider"></span>
+          <a href="#unreal-engine" class="nav-item">Unreal Engine</a>
+          <span class="nav-divider"></span>
+          <a href="#calismalar" class="nav-item">Çalışmalar</a>
+          <span class="nav-divider"></span>
+          <a href="#ilmiye-basvuru" class="nav-item">Vakıf Başvurusu</a>
+        </div>
+
+        <a href="#iletisim" class="cta-btn">
+          İletişim
+        </a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden glass-btn p-2.5 rounded-lg text-white" aria-label="Menü">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileDropdown" class="hidden absolute top-full left-4 right-4 mt-2 p-4 rounded-xl glass-panel md:hidden flex-col gap-3">
+      <a href="#muzik-kurgu" class="mobile-nav-item">Kurgu & Ses</a>
+      <a href="#unreal-engine" class="mobile-nav-item">Unreal Engine</a>
+      <a href="#calismalar" class="mobile-nav-item">Çalışmalar</a>
+      <a href="#ilmiye-basvuru" class="mobile-nav-item">İlmiye Vakfı Başvurusu</a>
+      <a href="#iletisim" class="mobile-nav-item font-semibold text-accent">İletişim</a>
+    </div>
+  </header>
+
+  <!-- Hero Section (Live Animated Pixel Canvas & Cofounder Glass Badges) -->
+  <section id="hero" class="relative w-full min-h-[92vh] flex items-center justify-center overflow-hidden pt-24 pb-16">
+    
+    <!-- Animated Pixel Art Canvas Background -->
+    <div class="absolute inset-0 z-0 overflow-hidden">
+      <canvas id="pixelCanvas" class="w-full h-full object-cover"></canvas>
+      <!-- Directional contrast overlay: darker on the left for text legibility, open on the right -->
+      <div class="hero-gradient-overlay"></div>
+    </div>
+
+    <div class="relative z-10 w-full max-w-[1280px] mx-auto px-5 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Hero Left: High-Contrast Typography & Intro -->
+      <div class="lg:col-span-7 flex flex-col items-start text-left hero-text-wrapper">
+        
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill-badge mb-6 shadow-md">
+          <span class="status-dot"></span>
+          <span class="text-[13px] font-mono text-white font-medium">Video Kurgu & Ses Tasarımı</span>
+        </div>
+
+        <h1 class="text-[38px] sm:text-[48px] lg:text-[54px] font-normal leading-[1.12] text-white tracking-[-0.02em] mb-5 hero-headline">
+          Kurgu bir matematik problemi değil.
+        </h1>
+
+        <p class="text-[16px] sm:text-[17.5px] leading-[1.6] text-white/90 max-w-[580px] mb-8 font-light hero-subtext">
+          Bir kurgunun değeri taşıdığı efekt sayısıyla değil, hangi kesimin neden orada olduğuyla ölçülür. İzhar Medya'da her kesim bir öncekinin devamı olarak kurulur; müzik, ritim ve 3D ise ancak sahnenin ihtiyacı olduğunda devreye girer.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-3.5 w-full sm:w-auto">
+          <a href="#calismalar" class="hero-primary-btn">
+            Çalışmaları İncele
+          </a>
+          <a href="#muzik-kurgu" class="hero-glass-btn">
+            Kurgu Süreci
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Hero Right: Floating Cofounder-style Live Task Pills -->
+      <div class="lg:col-span-5 flex flex-col gap-3.5 max-w-[440px] w-full mx-auto lg:mx-0">
+        
+        <div class="floating-task-card">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="flex items-center gap-2 text-[12px] font-mono text-white/70">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              Ses Tasarımı & Ritim
+            </span>
+            <span class="text-[11px] font-mono text-white/50">Ses Felsefesi</span>
+          </div>
+          <p class="text-[14px] text-white font-medium">Ses tasarımında boşluğu doldurmak değil, nerede duracağını bilmek belirleyicidir.</p>
+        </div>
+
+        <div class="floating-task-card">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="flex items-center gap-2 text-[12px] font-mono text-white/70">
+              <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+              Anlatı & İzlenme
+            </span>
+            <span class="text-[11px] font-mono text-white/50">Doğal Sonuç</span>
+          </div>
+          <p class="text-[14px] text-white font-medium">İzlenme süresi hedeflenerek değil, doğru sıralanmış bir anlatının doğal sonucu olarak elde edilir.</p>
+        </div>
+
+        <div class="floating-task-card">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="flex items-center gap-2 text-[12px] font-mono text-white/70">
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+              Unreal Engine 3D
+            </span>
+            <span class="text-[11px] font-mono text-white/50">Yapay Zekasız</span>
+          </div>
+          <p class="text-[14px] text-white font-medium">Sahnenin gerçek ihtiyacı olduğunda devreye giren özgün 3D modelleme ve kamera kurgusu.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- Section 1.0: Müzik Efektleri ve Ritmik Kurgu Kuruluşu (İzhar Medya Önceliği) -->
+  <section id="muzik-kurgu" class="section-container">
+    <div class="section-inner grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Left Column: Interactive App Preview Window (Cofounder style macOS window) -->
+      <div class="lg:col-span-6 w-full">
+        <div class="app-window">
+          
+          <!-- Window Header -->
+          <div class="app-window-header">
+            <div class="flex items-center gap-1.5">
+              <span class="window-dot bg-[#FF5F56]"></span>
+              <span class="window-dot bg-[#FFBD2E]"></span>
+              <span class="window-dot bg-[#27C93F]"></span>
+            </div>
+            <div class="text-[12px] font-mono text-ink-muted">izhar_timeline_master.prproj</div>
+            <div class="text-[11px] font-mono text-ink-faint">AUDIO SYNC</div>
+          </div>
+
+          <!-- Window Content: Video Preview & Audio Waveform -->
+          <div class="p-5 flex flex-col gap-4">
+            
+            <div class="relative rounded-lg overflow-hidden bg-black aspect-video border border-border-subtle group">
+              <video id="previewVideo1" class="w-full h-full object-cover" poster="https://pbs.twimg.com/amplify_video_thumb/2013297106442760193/img/kZGSb7qM6gqlbPjb.jpg" playsinline preload="metadata">
+                <source src="https://video.twimg.com/amplify_video/2013297106442760193/vid/avc1/1080x1080/qgWiKbMlbSzKB4cd.mp4?tag=21" type="video/mp4">
+              </video>
+              
+              <button onclick="toggleInlinePlay('previewVideo1', this)" class="inline-play-btn" aria-label="Oynat">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </button>
+
+              <div class="video-overlay-badge">
+                <span class="font-mono text-[11px]">Altay Cem Meriç Kurgusu (30.5K İzlenme)</span>
+              </div>
+            </div>
+
+            <!-- Audio Spectrum / Structure Inspector -->
+            <div class="bg-surface-elevated rounded-lg p-3.5 border border-border-subtle flex flex-col gap-2">
+              <div class="flex justify-between items-center text-[12px] font-mono">
+                <span class="text-ink-muted">Müzik & SFX Kuruluşu</span>
+                <span class="text-emerald-600 font-medium">BPM Sync: Aktif</span>
+              </div>
+
+              <!-- Fake Waveform Visualizer -->
+              <div class="waveform-container">
+                <span style="height: 40%"></span>
+                <span style="height: 70%"></span>
+                <span style="height: 95%"></span>
+                <span style="height: 60%"></span>
+                <span style="height: 85%"></span>
+                <span style="height: 100%"></span>
+                <span style="height: 75%"></span>
+                <span style="height: 50%"></span>
+                <span style="height: 90%"></span>
+                <span style="height: 65%"></span>
+                <span style="height: 80%"></span>
+                <span style="height: 100%"></span>
+                <span style="height: 45%"></span>
+                <span style="height: 70%"></span>
+                <span style="height: 90%"></span>
+                <span style="height: 55%"></span>
+                <span style="height: 85%"></span>
+                <span style="height: 60%"></span>
+                <span style="height: 75%"></span>
+                <span style="height: 95%"></span>
+              </div>
+
+              <div class="flex justify-between text-[11px] font-mono text-ink-faint mt-1">
+                <span>Vurgu Noktası: Ritim Kesimi</span>
+                <span>Foley / Ambiyans: -12 dB</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right Column: Cofounder Style Editorial Section -->
+      <div class="lg:col-span-6 flex flex-col items-start">
+        
+        <span class="section-tag font-mono">1.0 — SES VE KURGU KURULUŞU</span>
+
+        <h2 class="section-title">
+          Kurgunun kalbi, müziğin ve ses efektlerinin doğru kuruluşudur.
+        </h2>
+
+        <p class="section-description">
+          İzhar Medya kurgularında en yüksek öncelik; izleyicinin dikkatini dağıtmadan içeriğin hissini ve fikrini aktaran müzik seçimi, ses efektleri (SFX) ve ritmik kesim uyumuna verilir.
+        </p>
+
+        <!-- Numbered Accordion List (Cofounder style) -->
+        <div class="accordion-list w-full">
+          
+          <div class="accordion-item active">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">
+              <span class="accordion-number font-mono">1.1</span>
+              <span class="accordion-title">Müzik Temposuna Göre Ritmik Kesim</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>Konuşmanın vurgu anları ile arka plan müziğinin vuruş noktaları milisaniye hassasiyetinde eşleştirilir. Bu sayede izleyici akıştan kopmaz.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">
+              <span class="accordion-number font-mono">1.2</span>
+              <span class="accordion-title">Katmanlı Ses Efektleri (SFX & Foley)</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>Görsel geçişler, metin animasyonları ve kurgusal anlar; sahneye özel seçilmiş 'whoosh', 'riser', bas vuruşları ve atmosferik seslerle desteklenir.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">
+              <span class="accordion-number font-mono">1.3</span>
+              <span class="accordion-title">Temiz Vokal & Frekans Ayrımı</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>Müzik, konuşmacının ses frekansını ezmeyecek şekilde 'ducking' ve EQ filtreleriyle temizlenerek yayın standartlarına getirilir.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 2.0: Unreal Engine & 3D İntro (Yapay Zekasız) -->
+  <section id="unreal-engine" class="section-container bg-surface-alt border-y border-border-subtle">
+    <div class="section-inner grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Left Column: Editorial Info -->
+      <div class="lg:col-span-6 flex flex-col items-start order-2 lg:order-1">
+        
+        <span class="section-tag font-mono">2.0 — 3D & UNREAL ENGINE</span>
+
+        <h2 class="section-title">
+          Yapay zeka kullanılmadan hazırlanan Unreal Engine 3D animasyonları.
+        </h2>
+
+        <p class="section-description">
+          Hazır yapay zeka jeneratörleri yerine; sahne tasarımı, ışıklandırma, kamera hareketleri ve metin düzeni doğrudan Unreal Engine 3D motoru üzerinde elle inşa edilir.
+        </p>
+
+        <!-- Numbered Accordion List -->
+        <div class="accordion-list w-full">
+          
+          <div class="accordion-item active">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">
+              <span class="accordion-number font-mono">2.1</span>
+              <span class="accordion-title">Peygamberliğin İspatı — Kitap İnceleme İntrosu</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>Altay Cem Meriç'in 'Peygamberliğin İspatı' kitabı için Unreal Engine'de saatlerce modellenen sinematik kamera geçişleri, seslendirme ve intro kurgusu.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">
+              <span class="accordion-number font-mono">2.2</span>
+              <span class="accordion-title">%100 Özgün Modelleme & Render</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>Yapay zeka kusurları ve yapay dokular içermez. Gerçek zamanlı ışıklandırma (Lumen) ve sinematik kamera derinliğiyle net ve kurumsal bir sonuç sağlar.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Right Column: Unreal Engine Video Card (Cofounder style App Window) -->
+      <div class="lg:col-span-6 w-full order-1 lg:order-2">
+        <div class="app-window">
+          
+          <div class="app-window-header">
+            <div class="flex items-center gap-1.5">
+              <span class="window-dot bg-[#FF5F56]"></span>
+              <span class="window-dot bg-[#FFBD2E]"></span>
+              <span class="window-dot bg-[#27C93F]"></span>
+            </div>
+            <div class="text-[12px] font-mono text-ink-muted">UnrealEngine_Scene_Master.uproject</div>
+            <div class="text-[11px] font-mono text-amber-600">NO AI • HANDCRAFTED</div>
+          </div>
+
+          <div class="p-5 flex flex-col gap-4">
+            <div class="relative rounded-lg overflow-hidden bg-black aspect-video border border-border-subtle group">
+              <video id="previewVideo2" class="w-full h-full object-cover" poster="https://pbs.twimg.com/ext_tw_video_thumb/2036563775344746498/pu/img/qC0uJUSo1VXh3EQN.jpg" playsinline preload="metadata">
+                <source src="https://video.twimg.com/ext_tw_video/2036563775344746498/pu/vid/avc1/1280x720/onPajsVJra2R5MMG.mp4?tag=19" type="video/mp4">
+              </video>
+              
+              <button onclick="toggleInlinePlay('previewVideo2', this)" class="inline-play-btn" aria-label="Oynat">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </button>
+
+              <div class="video-overlay-badge">
+                <span class="font-mono text-[11px]">3D Unreal Engine İntro</span>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-[12px] font-mono text-ink-muted px-1">
+              <span>Render Motoru: Unreal Engine 5</span>
+              <span>Kurgu: Premiere Pro</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 3.0: Çalışmalar / Video Vitrini (Cofounder Filtered Grid) -->
+  <section id="calismalar" class="section-container">
+    <div class="max-w-[1280px] mx-auto px-5 sm:px-8 w-full flex flex-col items-center">
+      
+      <div class="text-center max-w-[640px] mb-10">
+        <span class="section-tag font-mono">3.0 — ÇALIŞMALAR</span>
+        <h2 class="section-title text-center">
+          Kategorilere göre seçilmiş kurgular.
+        </h2>
+        <p class="section-description text-center">
+          Sosyal medya dikey videolarından YouTube uzun format introlarına kadar yayınlanmış gerçek çalışmalar.
+        </p>
+      </div>
+
+      <!-- Filter Buttons (Cofounder Glass Pills) -->
+      <div class="filter-container mb-10">
+        <button class="filter-btn active" onclick="filterGallery('all', this)">Tümü</button>
+        <button class="filter-btn" onclick="filterGallery('dinamik', this)">Dinamik Kurgu</button>
+        <button class="filter-btn" onclick="filterGallery('unreal', this)">Unreal Engine</button>
+        <button class="filter-btn" onclick="filterGallery('dikey', this)">Dikey & Reels</button>
+        <button class="filter-btn" onclick="filterGallery('sanatsal', this)">Konsept</button>
+      </div>
+
+      <!-- Video Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+        
+        <!-- Video 1: Altay Cem Meriç Dinamik Kurgu -->
+        <div class="video-card" data-category="dinamik">
+          <div class="video-card-thumb" onclick="openModal('https://video.twimg.com/amplify_video/2013297106442760193/vid/avc1/1080x1080/qgWiKbMlbSzKB4cd.mp4?tag=21', 'Altay Cem Meriç — Dinamik Kurgu', '30.5K+ İzlenme • Müzik ve Ritim Eşleştirmesi', 'https://x.com/izharmedya/status/2013297691011199388')">
+            <img src="https://pbs.twimg.com/amplify_video_thumb/2013297106442760193/img/kZGSb7qM6gqlbPjb.jpg" alt="Altay Cem Meriç Video Kurgusu" class="w-full h-full object-cover">
+            <div class="play-overlay">
+              <span class="play-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+            <span class="card-badge font-mono">30.5K İzlenme</span>
+          </div>
+          <div class="video-card-body">
+            <div class="text-[12px] font-mono text-ink-muted mb-1">DİNAMİK KURGU • 1:1</div>
+            <h3 class="video-card-title">Altay Cem Meriç Kurgusu</h3>
+            <p class="video-card-desc">Müzik tempolarına tam oturan geçişler, vurgu efektleri ve yüksek etkileşimli kurgu.</p>
+            <a href="https://x.com/izharmedya/status/2013297691011199388" target="_blank" rel="noopener" class="video-card-link">
+              X Üzerinde İncele →
+            </a>
+          </div>
+        </div>
+
+        <!-- Video 2: 5. Kol Kurgusu -->
+        <div class="video-card" data-category="dinamik">
+          <div class="video-card-thumb" onclick="openModal('https://video.twimg.com/amplify_video/2014414561596567553/vid/avc1/1440x1080/wF7QfFC2y-JEoe8p.mp4?tag=21', '5. Kol Kurgusu', '8.3K+ İzlenme • Ses ve Metin Senkronu', 'https://x.com/izharmedya/status/2014416097185812875')">
+            <img src="https://pbs.twimg.com/amplify_video_thumb/2014414561596567553/img/xxkRLwuBQ743jGg8.jpg" alt="5. Kol Video Kurgusu" class="w-full h-full object-cover">
+            <div class="play-overlay">
+              <span class="play-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+            <span class="card-badge font-mono">8.3K İzlenme</span>
+          </div>
+          <div class="video-card-body">
+            <div class="text-[12px] font-mono text-ink-muted mb-1">DİNAMİK KURGU • 4:3</div>
+            <h3 class="video-card-title">5. Kol Kurgusu</h3>
+            <p class="video-card-desc">Fikir anlatımına uygun ritmik müzik kurgusu ve katmanlı ses efektleri.</p>
+            <a href="https://x.com/izharmedya/status/2014416097185812875" target="_blank" rel="noopener" class="video-card-link">
+              X Üzerinde İncele →
+            </a>
+          </div>
+        </div>
+
+        <!-- Video 3: Unreal Engine Peygamberliğin İspatı Intro -->
+        <div class="video-card" data-category="unreal">
+          <div class="video-card-thumb" onclick="openModal('https://video.twimg.com/ext_tw_video/2036563775344746498/pu/vid/avc1/1280x720/onPajsVJra2R5MMG.mp4?tag=19', 'Peygamberliğin İspatı — Unreal Engine İntro', 'Yapay Zekasız 3D Modelleme • Sinematik Kamera', 'https://x.com/izharmedya/status/2036563811524829487')">
+            <img src="https://pbs.twimg.com/ext_tw_video_thumb/2036563775344746498/pu/img/qC0uJUSo1VXh3EQN.jpg" alt="Unreal Engine Intro" class="w-full h-full object-cover">
+            <div class="play-overlay">
+              <span class="play-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+            <span class="card-badge font-mono bg-amber-500/80 text-white">Unreal Engine 5</span>
+          </div>
+          <div class="video-card-body">
+            <div class="text-[12px] font-mono text-ink-muted mb-1">3D ANİMASYON • 16:9</div>
+            <h3 class="video-card-title">Peygamberliğin İspatı İntro</h3>
+            <p class="video-card-desc">Yapay zeka kullanılmadan Unreal Engine ortamında hazırlanan 3D kitap intro kurgusu.</p>
+            <a href="https://x.com/izharmedya/status/2036563811524829487" target="_blank" rel="noopener" class="video-card-link">
+              X Üzerinde İncele →
+            </a>
+          </div>
+        </div>
+
+        <!-- Video 4: Kur'an'da Namaz Var mı? Dikey Reels -->
+        <div class="video-card" data-category="dikey">
+          <div class="video-card-thumb" onclick="openModal('https://video.twimg.com/amplify_video/2021647062765379585/vid/avc1/1080x1920/IbPQbO6I3emgCG0U.mp4?tag=21', 'Kur\'an\'da Namaz Var mı? — Dikey Kurgu', '3.5K+ İzlenme • Dinamik Altyazı & Ses Miksajı', 'https://x.com/izharmedya/status/2021656830674710772')">
+            <img src="https://pbs.twimg.com/amplify_video_thumb/2021647062765379585/img/WWkhnGV4zndIreSg.jpg" alt="Dikey Video Kurgusu" class="w-full h-full object-cover">
+            <div class="play-overlay">
+              <span class="play-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+            <span class="card-badge font-mono">Dikey 9:16</span>
+          </div>
+          <div class="video-card-body">
+            <div class="text-[12px] font-mono text-ink-muted mb-1">DİKEY FORMAT • REELS</div>
+            <h3 class="video-card-title">Kur'an'da Namaz Var mı?</h3>
+            <p class="video-card-desc">Konuşma akışına senkronize altyazı dinamizmi ve temiz ses düzenlemesi.</p>
+            <a href="https://x.com/izharmedya/status/2021656830674710772" target="_blank" rel="noopener" class="video-card-link">
+              X Üzerinde İncele →
+            </a>
+          </div>
+        </div>
+
+        <!-- Video 5: Van Gogh Konsept Edit -->
+        <div class="video-card" data-category="sanatsal">
+          <div class="video-card-thumb" onclick="openModal('https://video.twimg.com/ext_tw_video/2040354828233097219/pu/vid/avc1/722x720/kq5vIRIkjzoGSeSH.mp4?tag=19', 'Van Gogh Sanatsal Kurgu', 'Görsel Ritim ve Ses Kompozisyonu', 'https://x.com/izharmedya/status/2040354877411397731')">
+            <img src="https://pbs.twimg.com/ext_tw_video_thumb/2040354828233097219/pu/img/f3RMMZsk70Qb9pgs.jpg" alt="Van Gogh Edit" class="w-full h-full object-cover">
+            <div class="play-overlay">
+              <span class="play-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+            <span class="card-badge font-mono">Konsept 1:1</span>
+          </div>
+          <div class="video-card-body">
+            <div class="text-[12px] font-mono text-ink-muted mb-1">KONSEPT • 1:1</div>
+            <h3 class="video-card-title">Van Gogh Konsept Kurgusu</h3>
+            <p class="video-card-desc">Sanat eserleri ve kurgu ritminin müzikle birleştiği estetik çalışma.</p>
+            <a href="https://x.com/izharmedya/status/2040354877411397731" target="_blank" rel="noopener" class="video-card-link">
+              X Üzerinde İncele →
+            </a>
+          </div>
+        </div>
+
+        <!-- Video 6: Instagram Reels Kanalı -->
+        <div class="video-card" data-category="dikey">
+          <div class="video-card-thumb bg-surface-elevated flex items-center justify-center p-8">
+            <div class="text-center flex flex-col items-center gap-3">
+              <div class="w-12 h-12 rounded-full border border-border flex items-center justify-center text-ink-muted">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </div>
+              <span class="text-[14px] font-medium text-ink">@izhar.medya</span>
+              <span class="text-[12px] font-mono text-ink-muted">Instagram Tüm Reels Videoları</span>
+            </div>
+          </div>
+          <div class="video-card-body">
+            <div class="text-[12px] font-mono text-ink-muted mb-1">SOSYAL MEDYA • DİKEY</div>
+            <h3 class="video-card-title">Instagram Reels Akışı</h3>
+            <p class="video-card-desc">Düzenli olarak kurgulanmış güncel dikey video arşivi ve sosyal medya çalışmaları.</p>
+            <a href="https://www.instagram.com/izhar.medya/" target="_blank" rel="noopener" class="video-card-link">
+              Instagram Sayfasını Aç →
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 4.0: İlmiye Vakfı Başvuru & İletişim (Cofounder Style Clean Box) -->
+  <section id="ilmiye-basvuru" class="section-container bg-surface-alt border-t border-border-subtle">
+    <div class="max-w-[960px] mx-auto px-5 sm:px-8 w-full">
+      
+      <div class="app-window p-8 sm:p-12">
+        <div class="flex flex-col items-start max-w-[680px]">
+          
+          <span class="section-tag font-mono text-[12px]">4.0 — BAŞVURU & İLETİŞİM</span>
+
+          <h2 class="text-[28px] sm:text-[36px] font-normal tracking-tight text-ink leading-[1.2] mb-4">
+            İlmiye Vakfı Medya Birimi Video Editörü / Kurgucusu Başvurusu
+          </h2>
+
+          <p class="text-[15px] sm:text-[16px] text-ink-muted leading-[1.6] mb-8 font-light">
+            İzhar Medya olarak hazırladığımız bu portfolyo; ritmik kurgu, ses ve müzik efektleri kuruluşu, dikey video formatları ve Unreal Engine 3D animasyon yetkinliklerimizi somut olarak sunmaktadır.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-4 w-full">
+            <a href="mailto:iletisim@ilmiyevakfi.org.tr?subject=Video%20Edit%C3%B6r%C3%BC%20%2F%20Video%20Kurgucusu%20Ba%C5%9Fvurusu%20-%20%C4%B0zhar%20Medya&body=Merhabalar%2C%0A%0A%C4%B0lmiye%20Vakf%C4%B1%20Medya%20Birimi%20i%C3%A7in%20a%C3%A7m%C4%B1%C5%9F%20oldu%C4%9Funuz%20Video%20Edit%C3%B6r%C3%BC%20%2F%20Kurgucusu%20pozisyonuna%20ba%C5%9Fvurumu%20iletmek%20istiyorum.%0A%0APortfolyo%20ve%20%C3%A7al%C4%B1%C5%9Fmalar%C4%B1m%C4%B1n%20yer%20ald%C4%B1%C4%9F%C4%B1%20web%20sayfas%C4%B1%20ve%20detaylar%20a%C5%9Fa%C4%9F%C4%B1dad%C4%B1r.%0A%0A%C4%B0yi%20%C3%A7al%C4%B1%C5%9Fmalar%20dilerim." class="hero-primary-btn">
+              E-posta ile Başvuruyu İlet
+            </a>
+            
+            <a href="https://x.com/izharmedya" target="_blank" rel="noopener" class="hero-glass-btn text-ink border-border">
+              X (@izharmedya)
+            </a>
+
+            <a href="https://www.instagram.com/izhar.medya/" target="_blank" rel="noopener" class="hero-glass-btn text-ink border-border">
+              Instagram (@izhar.medya)
+            </a>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-border-subtle w-full flex flex-col sm:flex-row justify-between items-start sm:items-center text-[13px] font-mono text-ink-faint gap-2">
+            <span>Başvuru Hedefi: iletisim@ilmiyevakfi.org.tr</span>
+            <span>Konum: İstanbul / Dijital</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="iletisim" class="w-full py-8 border-t border-border-subtle bg-surface text-center">
+    <div class="max-w-[1280px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span class="text-[14px] font-serif text-ink">İzhar Medya</span>
+      <span class="text-[13px] font-mono text-ink-muted">© 2026 İzhar Medya — Video Kurgu & Portfolyo</span>
+      <div class="flex items-center gap-4 text-[13px] font-mono text-ink-muted">
+        <a href="https://x.com/izharmedya" target="_blank" rel="noopener" class="hover:text-ink">X / Twitter</a>
+        <a href="https://www.instagram.com/izhar.medya/" target="_blank" rel="noopener" class="hover:text-ink">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Video Playback Modal -->
+  <div id="videoModal" class="modal-backdrop hidden" onclick="handleBackdropClick(event)">
+    <div class="modal-container">
+      
+      <div class="modal-header">
+        <div class="flex flex-col">
+          <h3 id="modalTitle" class="modal-title font-medium">Video Başlığı</h3>
+          <span id="modalMeta" class="text-[12px] font-mono text-ink-muted">Video Detayı</span>
+        </div>
+        <button onclick="closeModal()" class="modal-close-btn" aria-label="Kapat">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <video id="modalVideoPlayer" controls playsinline class="w-full h-full max-h-[70vh] bg-black rounded-lg">
+          <source id="modalVideoSource" src="" type="video/mp4">
+          Tarayıcınız video etiketini desteklemiyor.
+        </video>
+      </div>
+
+      <div class="modal-footer">
+        <a id="modalExternalLink" href="#" target="_blank" rel="noopener" class="text-[13px] font-mono text-ink-muted hover:text-ink flex items-center gap-1.5">
+          Orijinal Gönderiyi Aç →
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
