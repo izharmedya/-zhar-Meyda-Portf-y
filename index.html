@@ -411,16 +411,79 @@
       <!-- Filter Buttons (Cofounder Glass Pills) -->
       <div class="filter-container mb-10">
         <button class="filter-btn active" onclick="filterGallery('all', this)">Tümü</button>
+        <button class="filter-btn" onclick="filterGallery('dikey', this)">Instagram & Dikey</button>
         <button class="filter-btn" onclick="filterGallery('dinamik', this)">Dinamik Kurgu</button>
         <button class="filter-btn" onclick="filterGallery('unreal', this)">Unreal Engine</button>
-        <button class="filter-btn" onclick="filterGallery('dikey', this)">Dikey & Reels</button>
         <button class="filter-btn" onclick="filterGallery('sanatsal', this)">Konsept</button>
       </div>
 
-      <!-- Video Grid -->
+      <!-- Video Grid (Instagram Reels Placed at the Top) -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
         
-        <!-- Video 1: Altay Cem Meriç Dinamik Kurgu -->
+        <!-- Instagram Reel 1 -->
+        <div class="video-card" data-category="dikey">
+          <div class="video-card-thumb bg-zinc-900 flex items-center justify-center relative overflow-hidden" onclick="openModal('https://video.twimg.com/amplify_video/2021647062765379585/vid/avc1/1080x1920/IbPQbO6I3emgCG0U.mp4?tag=21', 'İzhar Medya — Felsefe & Fikir Kurgusu (Reels)', 'Dikey Video • Ritmik Altyazı & Ses Efektleri', 'https://www.instagram.com/reel/DWrWlLHjava/')">
+            <img src="https://pbs.twimg.com/amplify_video_thumb/2021647062765379585/img/WWkhnGV4zndIreSg.jpg" alt="İzhar Medya Reels" class="w-full h-full object-cover">
+            <div class="play-overlay">
+              <span class="play-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+            <span class="card-badge font-mono">Instagram Reels</span>
+          </div>
+          <div class="video-card-body">
+            <div class="text-[12px] font-mono text-ink-muted mb-1">DİKEY REELS • 9:16</div>
+            <h3 class="video-card-title">Fikir & Anlatı Kurgusu</h3>
+            <p class="video-card-desc">Konuşma akışına senkronize altyazı dinamizmi, temiz vokal miksajı ve ritmik geçişler.</p>
+            <a href="https://www.instagram.com/reel/DWrWlLHjava/" target="_blank" rel="noopener" class="video-card-link">
+              Instagram'da İzle →
+            </a>
+          </div>
+        </div>
+
+        <!-- Instagram Reel 2 -->
+        <div class="video-card" data-category="dikey">
+          <div class="video-card-thumb bg-zinc-900 flex items-center justify-center relative overflow-hidden" onclick="openModal('https://video.twimg.com/amplify_video/2013297106442760193/vid/avc1/1080x1080/qgWiKbMlbSzKB4cd.mp4?tag=21', 'İzhar Medya — Kültür & Dinamik Ritim (Reels)', 'Dikey Video • Müzik Tempolu Kurgu', 'https://www.instagram.com/reel/DWb_idUjaT-/')">
+            <img src="https://pbs.twimg.com/ext_tw_video_thumb/2040354828233097219/pu/img/f3RMMZsk70Qb9pgs.jpg" alt="İzhar Medya Reels 2" class="w-full h-full object-cover">
+            <div class="play-overlay">
+              <span class="play-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+            <span class="card-badge font-mono">Instagram Reels</span>
+          </div>
+          <div class="video-card-body">
+            <div class="text-[12px] font-mono text-ink-muted mb-1">DİKEY REELS • 9:16</div>
+            <h3 class="video-card-title">Kültür & Dinamik Ritim</h3>
+            <p class="video-card-desc">Müzik tempolarına oturan hassas kesimler ve katmanlı atmosferik ses efektleri.</p>
+            <a href="https://www.instagram.com/reel/DWb_idUjaT-/" target="_blank" rel="noopener" class="video-card-link">
+              Instagram'da İzle →
+            </a>
+          </div>
+        </div>
+
+        <!-- Instagram Reel 3: Kur'an'da Namaz Var mı? -->
+        <div class="video-card" data-category="dikey">
+          <div class="video-card-thumb" onclick="openModal('https://video.twimg.com/amplify_video/2021647062765379585/vid/avc1/1080x1920/IbPQbO6I3emgCG0U.mp4?tag=21', 'Kur\'an\'da Namaz Var mı? — Dikey Kurgu', '3.5K+ İzlenme • Dinamik Altyazı & Ses Miksajı', 'https://x.com/izharmedya/status/2021656830674710772')">
+            <img src="https://pbs.twimg.com/amplify_video_thumb/2021647062765379585/img/WWkhnGV4zndIreSg.jpg" alt="Dikey Video Kurgusu" class="w-full h-full object-cover">
+            <div class="play-overlay">
+              <span class="play-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+            <span class="card-badge font-mono">Dikey 9:16</span>
+          </div>
+          <div class="video-card-body">
+            <div class="text-[12px] font-mono text-ink-muted mb-1">DİKEY FORMAT • REELS</div>
+            <h3 class="video-card-title">Kur'an'da Namaz Var mı?</h3>
+            <p class="video-card-desc">Konuşma akışına senkronize altyazı dinamizmi ve temiz ses düzenlemesi.</p>
+            <a href="https://www.instagram.com/izhar.medya/" target="_blank" rel="noopener" class="video-card-link">
+              Instagram Sayfasını Aç →
+            </a>
+          </div>
+        </div>
+
+        <!-- Video 4: Altay Cem Meriç Dinamik Kurgu -->
         <div class="video-card" data-category="dinamik">
           <div class="video-card-thumb" onclick="openModal('https://video.twimg.com/amplify_video/2013297106442760193/vid/avc1/1080x1080/qgWiKbMlbSzKB4cd.mp4?tag=21', 'Altay Cem Meriç — Dinamik Kurgu', '30.5K+ İzlenme • Müzik ve Ritim Eşleştirmesi', 'https://x.com/izharmedya/status/2013297691011199388')">
             <img src="https://pbs.twimg.com/amplify_video_thumb/2013297106442760193/img/kZGSb7qM6gqlbPjb.jpg" alt="Altay Cem Meriç Video Kurgusu" class="w-full h-full object-cover">
@@ -441,7 +504,7 @@
           </div>
         </div>
 
-        <!-- Video 2: 5. Kol Kurgusu -->
+        <!-- Video 5: 5. Kol Kurgusu -->
         <div class="video-card" data-category="dinamik">
           <div class="video-card-thumb" onclick="openModal('https://video.twimg.com/amplify_video/2014414561596567553/vid/avc1/1440x1080/wF7QfFC2y-JEoe8p.mp4?tag=21', '5. Kol Kurgusu', '8.3K+ İzlenme • Ses ve Metin Senkronu', 'https://x.com/izharmedya/status/2014416097185812875')">
             <img src="https://pbs.twimg.com/amplify_video_thumb/2014414561596567553/img/xxkRLwuBQ743jGg8.jpg" alt="5. Kol Video Kurgusu" class="w-full h-full object-cover">
@@ -462,7 +525,7 @@
           </div>
         </div>
 
-        <!-- Video 3: Unreal Engine Peygamberliğin İspatı Intro -->
+        <!-- Video 6: Unreal Engine Peygamberliğin İspatı Intro -->
         <div class="video-card" data-category="unreal">
           <div class="video-card-thumb" onclick="openModal('https://video.twimg.com/ext_tw_video/2036563775344746498/pu/vid/avc1/1280x720/onPajsVJra2R5MMG.mp4?tag=19', 'Peygamberliğin İspatı — Unreal Engine İntro', 'Yapay Zekasız 3D Modelleme • Sinematik Kamera', 'https://x.com/izharmedya/status/2036563811524829487')">
             <img src="https://pbs.twimg.com/ext_tw_video_thumb/2036563775344746498/pu/img/qC0uJUSo1VXh3EQN.jpg" alt="Unreal Engine Intro" class="w-full h-full object-cover">
@@ -483,28 +546,7 @@
           </div>
         </div>
 
-        <!-- Video 4: Kur'an'da Namaz Var mı? Dikey Reels -->
-        <div class="video-card" data-category="dikey">
-          <div class="video-card-thumb" onclick="openModal('https://video.twimg.com/amplify_video/2021647062765379585/vid/avc1/1080x1920/IbPQbO6I3emgCG0U.mp4?tag=21', 'Kur\'an\'da Namaz Var mı? — Dikey Kurgu', '3.5K+ İzlenme • Dinamik Altyazı & Ses Miksajı', 'https://x.com/izharmedya/status/2021656830674710772')">
-            <img src="https://pbs.twimg.com/amplify_video_thumb/2021647062765379585/img/WWkhnGV4zndIreSg.jpg" alt="Dikey Video Kurgusu" class="w-full h-full object-cover">
-            <div class="play-overlay">
-              <span class="play-circle">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-              </span>
-            </div>
-            <span class="card-badge font-mono">Dikey 9:16</span>
-          </div>
-          <div class="video-card-body">
-            <div class="text-[12px] font-mono text-ink-muted mb-1">DİKEY FORMAT • REELS</div>
-            <h3 class="video-card-title">Kur'an'da Namaz Var mı?</h3>
-            <p class="video-card-desc">Konuşma akışına senkronize altyazı dinamizmi ve temiz ses düzenlemesi.</p>
-            <a href="https://x.com/izharmedya/status/2021656830674710772" target="_blank" rel="noopener" class="video-card-link">
-              X Üzerinde İncele →
-            </a>
-          </div>
-        </div>
-
-        <!-- Video 5: Van Gogh Konsept Edit -->
+        <!-- Video 7: Van Gogh Konsept Edit -->
         <div class="video-card" data-category="sanatsal">
           <div class="video-card-thumb" onclick="openModal('https://video.twimg.com/ext_tw_video/2040354828233097219/pu/vid/avc1/722x720/kq5vIRIkjzoGSeSH.mp4?tag=19', 'Van Gogh Sanatsal Kurgu', 'Görsel Ritim ve Ses Kompozisyonu', 'https://x.com/izharmedya/status/2040354877411397731')">
             <img src="https://pbs.twimg.com/ext_tw_video_thumb/2040354828233097219/pu/img/f3RMMZsk70Qb9pgs.jpg" alt="Van Gogh Edit" class="w-full h-full object-cover">
@@ -525,7 +567,7 @@
           </div>
         </div>
 
-        <!-- Video 6: Instagram Reels Kanalı -->
+        <!-- Video 8: Instagram Tüm Arşiv Kartı -->
         <div class="video-card" data-category="dikey">
           <div class="video-card-thumb bg-surface-elevated flex items-center justify-center p-8">
             <div class="text-center flex flex-col items-center gap-3">
