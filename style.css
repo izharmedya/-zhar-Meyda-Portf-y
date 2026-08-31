@@ -632,7 +632,8 @@ body {
   transition: transform 0.2s ease;
 }
 
-.video-card-thumb:hover .play-circle {
+.video-card-thumb:hover .play-circle,
+.video-card-thumb-short:hover .play-circle {
   transform: scale(1.1);
 }
 
@@ -647,6 +648,28 @@ body {
   padding: 3px 8px;
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.yt-link-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: #dc2626;
+  transition: color 0.15s ease;
+}
+
+.video-card:hover .yt-link-badge {
+  color: #b91c1c;
+}
+
+a.no-underline,
+a.no-underline:hover {
+  text-decoration: none;
+  color: inherit;
 }
 
 .video-card-body {
