@@ -42,31 +42,37 @@
 
   <!-- Header / Navigation (Cofounder Glass Navbar) -->
   <header class="site-header fixed top-0 left-0 right-0 z-50 flex justify-center py-4 px-4 sm:px-6 transition-all duration-300">
-    <div class="w-full max-w-[1280px] flex items-center justify-between">
+    <!-- Navigation Pill Container (Cofounder style) -->
+    <div class="max-w-[1280px] mx-auto px-5 sm:px-8 flex items-center justify-between">
       
       <!-- Brand Logo -->
-      <a href="#" class="brand-logo text-[22px] sm:text-[26px] font-serif tracking-tight text-white hover:opacity-90 transition-opacity">
-        İzhar Medya
+      <a href="#hero" class="brand-logo flex items-center gap-2 group">
+        <span class="text-[22px] sm:text-[24px] font-serif tracking-tight text-white transition-colors duration-200">
+          İzhar Medya
+        </span>
       </a>
 
-      <!-- Desktop Glass Navigation Pills -->
-      <nav class="hidden md:flex items-center gap-3">
-        <div class="glass-pill-container flex items-center px-3 py-1.5 rounded-lg">
-          <a href="#muzik-kurgu" class="nav-item">Kurgu & Ses</a>
-          <span class="nav-divider"></span>
-          <a href="#unreal-engine" class="nav-item">Unreal Engine</a>
-          <span class="nav-divider"></span>
-          <a href="#calismalar" class="nav-item">Çalışmalar</a>
-          <span class="nav-divider"></span>
-          <a href="#ilmiye-basvuru" class="nav-item">Vakıf Başvurusu</a>
-        </div>
-
-        <a href="#iletisim" class="cta-btn">
-          İletişim
-        </a>
+      <!-- Desktop Frosted Glass Navbar -->
+      <nav class="hidden md:flex items-center gap-1 p-1 rounded-full glass-pill-container">
+        <a href="#shorts-vitrin" class="nav-item">YouTube Shorts</a>
+        <span class="nav-divider"></span>
+        <a href="#muzik-kurgu" class="nav-item">Kurgu & Ses</a>
+        <span class="nav-divider"></span>
+        <a href="#unreal-engine" class="nav-item">Unreal Engine</a>
+        <span class="nav-divider"></span>
+        <a href="#calismalar" class="nav-item">Tüm Kurgular</a>
+        <span class="nav-divider"></span>
+        <a href="#ilmiye-basvuru" class="nav-item">Vakıf Başvurusu</a>
       </nav>
 
-      <!-- Mobile Menu Button -->
+      <!-- Right CTA Button -->
+      <div class="hidden sm:flex items-center gap-3">
+        <a href="#ilmiye-basvuru" class="cta-btn">
+          İletişim
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
       <button id="mobileMenuBtn" class="md:hidden glass-btn p-2.5 rounded-lg text-white" aria-label="Menü">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -79,9 +85,10 @@
 
     <!-- Mobile Dropdown Menu -->
     <div id="mobileDropdown" class="hidden absolute top-full left-4 right-4 mt-2 p-4 rounded-xl glass-panel md:hidden flex-col gap-3">
+      <a href="#shorts-vitrin" class="mobile-nav-item">YouTube Shorts</a>
       <a href="#muzik-kurgu" class="mobile-nav-item">Kurgu & Ses</a>
       <a href="#unreal-engine" class="mobile-nav-item">Unreal Engine</a>
-      <a href="#calismalar" class="mobile-nav-item">Çalışmalar</a>
+      <a href="#calismalar" class="mobile-nav-item">Tüm Kurgular</a>
       <a href="#ilmiye-basvuru" class="mobile-nav-item">İlmiye Vakfı Başvurusu</a>
       <a href="#iletisim" class="mobile-nav-item font-semibold text-accent">İletişim</a>
     </div>
@@ -166,10 +173,179 @@
 
     </div>
 
+  <!-- Section 1.0: YouTube Shorts & Dikey Kurgu Vitrini (Doğrudan Hero'dan Sonra) -->
+  <section id="shorts-vitrin" class="section-container bg-surface border-b border-border-subtle">
+    <div class="max-w-[1280px] mx-auto px-5 sm:px-8 w-full flex flex-col items-center">
+      
+      <div class="text-center max-w-[680px] mb-12">
+        <span class="section-tag font-mono">1.0 — YOUTUBE SHORTS VİTRİNİ</span>
+        <h2 class="section-title text-center">
+          Dikey kurgu, tempo ve kurgu felsefesi.
+        </h2>
+        <p class="section-description text-center">
+          Doğrudan YouTube üzerinden hızlı ve kesintisiz izlenebilen; kurgu psikolojisi (Kuleshov), kompozisyon teknikleri ve dinamik tempo çalışmaları.
+        </p>
+      </div>
+
+      <!-- YouTube Shorts Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+        
+        <!-- Short 1: Yapay Zeka İşimizi Elimizden Alacak Mı? -->
+        <div class="video-card">
+          <div class="relative w-full aspect-[9/16] bg-black rounded-t-xl overflow-hidden">
+            <iframe 
+              src="https://www.youtube-nocookie.com/embed/xlqnHmv5Epg?rel=0&modestbranding=1&playsinline=1" 
+              title="Yapay Zeka İşimizi Elimizden Alacak Mı?" 
+              class="w-full h-full border-0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-card-body">
+            <div class="text-[12px] font-mono text-ink-muted mb-1">YOUTUBE SHORTS • 9:16</div>
+            <h3 class="video-card-title">Yapay Zeka İşimizi Elimizden Alacak Mı?</h3>
+            <p class="video-card-desc">Kurgucunun rolü ve yapay zeka araçlarının sınırlarına dair dinamik anlatı.</p>
+            <div class="flex items-center justify-between pt-2 border-t border-border-subtle mt-2">
+              <span class="text-[11px] font-mono text-emerald-600 font-medium">● YouTube Canlı Akış</span>
+              <a href="https://www.youtube.com/shorts/xlqnHmv5Epg" target="_blank" rel="noopener" class="video-card-link text-[12px]">
+                YouTube'da Aç →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Short 2: Kuleshov’un Etkisi -->
+        <div class="video-card">
+          <div class="relative w-full aspect-[9/16] bg-black rounded-t-xl overflow-hidden">
+            <iframe 
+              src="https://www.youtube-nocookie.com/embed/PJEboPZB8kg?rel=0&modestbranding=1&playsinline=1" 
+              title="Kuleshov’un Etkisi" 
+              class="w-full h-full border-0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-card-body">
+            <div class="text-[12px] font-mono text-ink-muted mb-1">KURGU SANATI • 9:16</div>
+            <h3 class="video-card-title">Kuleshov’un Etkisi (Kurgu Psikolojisi)</h3>
+            <p class="video-card-desc">İki görüntünün bir araya gelişinde oluşan anlam ve kurgunun izleyiciye etkisi.</p>
+            <div class="flex items-center justify-between pt-2 border-t border-border-subtle mt-2">
+              <span class="text-[11px] font-mono text-emerald-600 font-medium">● YouTube Canlı Akış</span>
+              <a href="https://www.youtube.com/shorts/PJEboPZB8kg" target="_blank" rel="noopener" class="video-card-link text-[12px]">
+                YouTube'da Aç →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Short 3: Önemli Olan Programları Bilmek Değildir! -->
+        <div class="video-card">
+          <div class="relative w-full aspect-[9/16] bg-black rounded-t-xl overflow-hidden">
+            <iframe 
+              src="https://www.youtube-nocookie.com/embed/twAMn6voNkU?rel=0&modestbranding=1&playsinline=1" 
+              title="Önemli Olan Programları Bilmek Değildir!" 
+              class="w-full h-full border-0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-card-body">
+            <div class="text-[12px] font-mono text-ink-muted mb-1">KURGU FELSEFESİ • 9:16</div>
+            <h3 class="video-card-title">Önemli Olan Programları Bilmek Değildir!</h3>
+            <p class="video-card-desc">Yazılım bilgisi yerine anlatı, ritim ve kesim mantığının belirleyiciliği.</p>
+            <div class="flex items-center justify-between pt-2 border-t border-border-subtle mt-2">
+              <span class="text-[11px] font-mono text-emerald-600 font-medium">● YouTube Canlı Akış</span>
+              <a href="https://www.youtube.com/shorts/twAMn6voNkU" target="_blank" rel="noopener" class="video-card-link text-[12px]">
+                YouTube'da Aç →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Short 4: Yönetmenlerin Kompozisyon Tekniği -->
+        <div class="video-card">
+          <div class="relative w-full aspect-[9/16] bg-black rounded-t-xl overflow-hidden">
+            <iframe 
+              src="https://www.youtube-nocookie.com/embed/wRLvr3niq1o?rel=0&modestbranding=1&playsinline=1" 
+              title="Yönetmenlerin Kompozisyon Tekniği" 
+              class="w-full h-full border-0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-card-body">
+            <div class="text-[12px] font-mono text-ink-muted mb-1">SİNEMATOGRAFİ • 9:16</div>
+            <h3 class="video-card-title">Yönetmenlerin Kompozisyon Tekniği</h3>
+            <p class="video-card-desc">Kare içindeki göz takibi, yönlendirme ve görsel denge dinamikleri.</p>
+            <div class="flex items-center justify-between pt-2 border-t border-border-subtle mt-2">
+              <span class="text-[11px] font-mono text-emerald-600 font-medium">● YouTube Canlı Akış</span>
+              <a href="https://www.youtube.com/shorts/wRLvr3niq1o" target="_blank" rel="noopener" class="video-card-link text-[12px]">
+                YouTube'da Aç →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Short 5: Doğru “Montaj” Nedir? -->
+        <div class="video-card">
+          <div class="relative w-full aspect-[9/16] bg-black rounded-t-xl overflow-hidden">
+            <iframe 
+              src="https://www.youtube-nocookie.com/embed/yuaxsrdRpas?rel=0&modestbranding=1&playsinline=1" 
+              title="Doğru “Montaj” Nedir?" 
+              class="w-full h-full border-0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-card-body">
+            <div class="text-[12px] font-mono text-ink-muted mb-1">KURGU TEMELLERİ • 9:16</div>
+            <h3 class="video-card-title">Doğru “Montaj” Nedir?</h3>
+            <p class="video-card-desc">Gereksiz efektlerden arındırılmış, hikayeye hizmet eden kesim düzeni.</p>
+            <div class="flex items-center justify-between pt-2 border-t border-border-subtle mt-2">
+              <span class="text-[11px] font-mono text-emerald-600 font-medium">● YouTube Canlı Akış</span>
+              <a href="https://www.youtube.com/shorts/yuaxsrdRpas" target="_blank" rel="noopener" class="video-card-link text-[12px]">
+                YouTube'da Aç →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Short 6: Ruhi Çenet Video Kurgusu Yeniden Yapımı -->
+        <div class="video-card">
+          <div class="relative w-full aspect-[9/16] bg-black rounded-t-xl overflow-hidden">
+            <iframe 
+              src="https://www.youtube-nocookie.com/embed/-A1HEoYfsrM?rel=0&modestbranding=1&playsinline=1" 
+              title="Ruhi Çenet Video Kurgusu Yeniden Yapımı" 
+              class="w-full h-full border-0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-card-body">
+            <div class="text-[12px] font-mono text-ink-muted mb-1">DİNAMİK TEMPO • 9:16</div>
+            <h3 class="video-card-title">Ruhi Çenet Video Kurgusu (Re-edit)</h3>
+            <p class="video-card-desc">Yüksek tempolu kurgu, SFX yerleşimi ve kitle tutma oranı odaklı yeniden kurgu.</p>
+            <div class="flex items-center justify-between pt-2 border-t border-border-subtle mt-2">
+              <span class="text-[11px] font-mono text-emerald-600 font-medium">● YouTube Canlı Akış</span>
+              <a href="https://www.youtube.com/shorts/-A1HEoYfsrM" target="_blank" rel="noopener" class="video-card-link text-[12px]">
+                YouTube'da Aç →
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
   </section>
 
-
-  <!-- Section 1.0: Müzik Efektleri ve Ritmik Kurgu Kuruluşu (İzhar Medya Önceliği) -->
+  <!-- Section 2.0: Müzik Efektleri ve Ritmik Kurgu Kuruluşu (İzhar Medya Önceliği) -->
   <section id="muzik-kurgu" class="section-container">
     <div class="section-inner grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
       
@@ -394,154 +570,157 @@
     </div>
   </section>
 
-  <!-- Section 3.0: Çalışmalar / Video Vitrini (Cofounder Filtered Grid) -->
+  <!-- Section 4.0: Tüm Çalışmalar & Projeler (Cofounder Filtered Grid) -->
   <section id="calismalar" class="section-container">
     <div class="max-w-[1280px] mx-auto px-5 sm:px-8 w-full flex flex-col items-center">
       
       <div class="text-center max-w-[640px] mb-10">
-        <span class="section-tag font-mono">3.0 — ÇALIŞMALAR</span>
+        <span class="section-tag font-mono">4.0 — DİĞER ÇALIŞMALAR</span>
         <h2 class="section-title text-center">
-          Kategorilere göre seçilmiş kurgular.
+          Uzun format, intro ve konsept kurguları.
         </h2>
         <p class="section-description text-center">
-          Sosyal medya dikey videolarından YouTube uzun format introlarına kadar yayınlanmış gerçek çalışmalar.
+          Yüksek etkileşimli YouTube kurguları, özel 3D animasyonlar ve sanatsal ritim çalışmaları.
         </p>
       </div>
 
       <!-- Filter Buttons (Cofounder Glass Pills) -->
       <div class="filter-container mb-10">
         <button class="filter-btn active" onclick="filterGallery('all', this)">Tümü</button>
-        <button class="filter-btn" onclick="filterGallery('dikey', this)">Instagram & Dikey</button>
         <button class="filter-btn" onclick="filterGallery('dinamik', this)">Dinamik Kurgu</button>
         <button class="filter-btn" onclick="filterGallery('unreal', this)">Unreal Engine</button>
+        <button class="filter-btn" onclick="filterGallery('dikey', this)">Dikey & Reels</button>
         <button class="filter-btn" onclick="filterGallery('sanatsal', this)">Konsept</button>
       </div>
 
-      <!-- Video Grid (Interactive Embedded Videos) -->
+      <!-- Video Grid (Curated Major Works) -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
         
-        <!-- Instagram Reel 1: Db3XWg2IyBx -->
-        <div class="video-card" data-category="dikey">
-          <div class="relative w-full aspect-[9/14] bg-black rounded-t-xl overflow-hidden">
-            <iframe 
-              src="https://www.instagram.com/reel/Db3XWg2IyBx/embed/" 
-              class="w-full h-full border-0" 
-              frameborder="0" 
-              scrolling="no" 
-              allowtransparency="true" 
-              allowfullscreen="true">
-            </iframe>
+        <!-- Video 1: Altay Cem Meriç Dinamik Kurgu -->
+        <div class="video-card" data-category="dinamik">
+          <div class="video-card-thumb" onclick="openModal('https://video.twimg.com/amplify_video/2013297106442760193/vid/avc1/1080x1080/qgWiKbMlbSzKB4cd.mp4?tag=21', 'Altay Cem Meriç — Dinamik Kurgu', '30.5K+ İzlenme • Müzik ve Ritim Eşleştirmesi', 'https://x.com/izharmedya/status/2013297691011199388')">
+            <img src="https://pbs.twimg.com/amplify_video_thumb/2013297106442760193/img/kZGSb7qM6gqlbPjb.jpg" alt="Altay Cem Meriç Video Kurgusu" class="w-full h-full object-cover">
+            <div class="play-overlay">
+              <span class="play-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+            <span class="card-badge font-mono">30.5K İzlenme</span>
           </div>
           <div class="video-card-body">
-            <div class="text-[12px] font-mono text-ink-muted mb-1">DİKEY REELS • 9:16</div>
-            <h3 class="video-card-title">Dinamik Fikir Kurgusu</h3>
-            <p class="video-card-desc">Konuşma temposuna ve ses vurgularına göre yapılandırılmış ritmik dikey video.</p>
-            <div class="flex items-center justify-between pt-2 border-t border-border-subtle mt-2">
-              <span class="text-[11px] font-mono text-emerald-600">● Doğrudan Oynatılabilir</span>
-              <a href="https://www.instagram.com/reel/Db3XWg2IyBx/" target="_blank" rel="noopener" class="video-card-link text-[12px]">
-                Instagram'da Aç →
-              </a>
-            </div>
+            <div class="text-[12px] font-mono text-ink-muted mb-1">DİNAMİK KURGU • 1:1</div>
+            <h3 class="video-card-title">Altay Cem Meriç Kurgusu</h3>
+            <p class="video-card-desc">Müzik tempolarına tam oturan geçişler, vurgu efektleri ve yüksek etkileşimli kurgu.</p>
+            <a href="https://x.com/izharmedya/status/2013297691011199388" target="_blank" rel="noopener" class="video-card-link">
+              X Üzerinde İncele →
+            </a>
           </div>
         </div>
 
-        <!-- Instagram Reel 2: DbVkF41opmI -->
-        <div class="video-card" data-category="dikey">
-          <div class="relative w-full aspect-[9/14] bg-black rounded-t-xl overflow-hidden">
-            <iframe 
-              src="https://www.instagram.com/reel/DbVkF41opmI/embed/" 
-              class="w-full h-full border-0" 
-              frameborder="0" 
-              scrolling="no" 
-              allowtransparency="true" 
-              allowfullscreen="true">
-            </iframe>
+        <!-- Video 2: 5. Kol Kurgusu -->
+        <div class="video-card" data-category="dinamik">
+          <div class="video-card-thumb" onclick="openModal('https://video.twimg.com/amplify_video/2014414561596567553/vid/avc1/1440x1080/wF7QfFC2y-JEoe8p.mp4?tag=21', '5. Kol Kurgusu', '8.3K+ İzlenme • Ses ve Metin Senkronu', 'https://x.com/izharmedya/status/2014416097185812875')">
+            <img src="https://pbs.twimg.com/amplify_video_thumb/2014414561596567553/img/xxkRLwuBQ743jGg8.jpg" alt="5. Kol Video Kurgusu" class="w-full h-full object-cover">
+            <div class="play-overlay">
+              <span class="play-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+            <span class="card-badge font-mono">8.3K İzlenme</span>
           </div>
           <div class="video-card-body">
-            <div class="text-[12px] font-mono text-ink-muted mb-1">DİKEY REELS • 9:16</div>
-            <h3 class="video-card-title">Kültür & Dinamik Ritim</h3>
-            <p class="video-card-desc">Katmanlı ses efektleri ve sahneye özel seçilmiş müzik geçişleri.</p>
-            <div class="flex items-center justify-between pt-2 border-t border-border-subtle mt-2">
-              <span class="text-[11px] font-mono text-emerald-600">● Doğrudan Oynatılabilir</span>
-              <a href="https://www.instagram.com/reel/DbVkF41opmI/" target="_blank" rel="noopener" class="video-card-link text-[12px]">
-                Instagram'da Aç →
-              </a>
-            </div>
+            <div class="text-[12px] font-mono text-ink-muted mb-1">DİNAMİK KURGU • 4:3</div>
+            <h3 class="video-card-title">5. Kol Kurgusu</h3>
+            <p class="video-card-desc">Fikir anlatımına uygun ritmik müzik kurgusu ve katmanlı ses efektleri.</p>
+            <a href="https://x.com/izharmedya/status/2014416097185812875" target="_blank" rel="noopener" class="video-card-link">
+              X Üzerinde İncele →
+            </a>
           </div>
         </div>
 
-        <!-- Instagram Reel 3: DbI7uULoqlA -->
-        <div class="video-card" data-category="dikey">
-          <div class="relative w-full aspect-[9/14] bg-black rounded-t-xl overflow-hidden">
-            <iframe 
-              src="https://www.instagram.com/reel/DbI7uULoqlA/embed/" 
-              class="w-full h-full border-0" 
-              frameborder="0" 
-              scrolling="no" 
-              allowtransparency="true" 
-              allowfullscreen="true">
-            </iframe>
+        <!-- Video 3: Unreal Engine Peygamberliğin İspatı Intro -->
+        <div class="video-card" data-category="unreal">
+          <div class="video-card-thumb" onclick="openModal('https://video.twimg.com/ext_tw_video/2036563775344746498/pu/vid/avc1/1280x720/onPajsVJra2R5MMG.mp4?tag=19', 'Peygamberliğin İspatı — Unreal Engine İntro', 'Yapay Zekasız 3D Modelleme • Sinematik Kamera', 'https://x.com/izharmedya/status/2036563811524829487')">
+            <img src="https://pbs.twimg.com/ext_tw_video_thumb/2036563775344746498/pu/img/qC0uJUSo1VXh3EQN.jpg" alt="Unreal Engine Intro" class="w-full h-full object-cover">
+            <div class="play-overlay">
+              <span class="play-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+            <span class="card-badge font-mono bg-amber-500/80 text-white">Unreal Engine 5</span>
           </div>
           <div class="video-card-body">
-            <div class="text-[12px] font-mono text-ink-muted mb-1">DİKEY REELS • 9:16</div>
-            <h3 class="video-card-title">Felsefe & Anlatı Kurgusu</h3>
-            <p class="video-card-desc">İzleyici odağını koruyan temiz vokal miksajı ve milisaniye senkronlu kesimler.</p>
-            <div class="flex items-center justify-between pt-2 border-t border-border-subtle mt-2">
-              <span class="text-[11px] font-mono text-emerald-600">● Doğrudan Oynatılabilir</span>
-              <a href="https://www.instagram.com/reel/DbI7uULoqlA/" target="_blank" rel="noopener" class="video-card-link text-[12px]">
-                Instagram'da Aç →
-              </a>
-            </div>
+            <div class="text-[12px] font-mono text-ink-muted mb-1">3D ANİMASYON • 16:9</div>
+            <h3 class="video-card-title">Peygamberliğin İspatı İntro</h3>
+            <p class="video-card-desc">Yapay zeka kullanılmadan Unreal Engine ortamında hazırlanan 3D kitap intro kurgusu.</p>
+            <a href="https://x.com/izharmedya/status/2036563811524829487" target="_blank" rel="noopener" class="video-card-link">
+              X Üzerinde İncele →
+            </a>
           </div>
         </div>
 
-        <!-- Instagram Reel 4: DbD73syIO55 -->
+        <!-- Video 4: Kur'an'da Namaz Var mı? Dikey Reels -->
         <div class="video-card" data-category="dikey">
-          <div class="relative w-full aspect-[9/14] bg-black rounded-t-xl overflow-hidden">
-            <iframe 
-              src="https://www.instagram.com/reel/DbD73syIO55/embed/" 
-              class="w-full h-full border-0" 
-              frameborder="0" 
-              scrolling="no" 
-              allowtransparency="true" 
-              allowfullscreen="true">
-            </iframe>
+          <div class="video-card-thumb" onclick="openModal('https://video.twimg.com/amplify_video/2021647062765379585/vid/avc1/1080x1920/IbPQbO6I3emgCG0U.mp4?tag=21', 'Kur\'an\'da Namaz Var mı? — Dikey Kurgu', '3.5K+ İzlenme • Dinamik Altyazı & Ses Miksajı', 'https://x.com/izharmedya/status/2021656830674710772')">
+            <img src="https://pbs.twimg.com/amplify_video_thumb/2021647062765379585/img/WWkhnGV4zndIreSg.jpg" alt="Dikey Video Kurgusu" class="w-full h-full object-cover">
+            <div class="play-overlay">
+              <span class="play-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+            <span class="card-badge font-mono">Dikey 9:16</span>
           </div>
           <div class="video-card-body">
-            <div class="text-[12px] font-mono text-ink-muted mb-1">DİKEY REELS • 9:16</div>
-            <h3 class="video-card-title">Tematik Video Kurgusu</h3>
-            <p class="video-card-desc">Görsel akışı destekleyen foley ve arka plan müzik miksajı.</p>
-            <div class="flex items-center justify-between pt-2 border-t border-border-subtle mt-2">
-              <span class="text-[11px] font-mono text-emerald-600">● Doğrudan Oynatılabilir</span>
-              <a href="https://www.instagram.com/reel/DbD73syIO55/" target="_blank" rel="noopener" class="video-card-link text-[12px]">
-                Instagram'da Aç →
-              </a>
-            </div>
+            <div class="text-[12px] font-mono text-ink-muted mb-1">DİKEY FORMAT • REELS</div>
+            <h3 class="video-card-title">Kur'an'da Namaz Var mı?</h3>
+            <p class="video-card-desc">Konuşma akışına senkronize altyazı dinamizmi ve temiz ses düzenlemesi.</p>
+            <a href="https://x.com/izharmedya/status/2021656830674710772" target="_blank" rel="noopener" class="video-card-link">
+              X Üzerinde İncele →
+            </a>
           </div>
         </div>
 
-        <!-- Instagram Reel 5: DaLsGExyhvE -->
-        <div class="video-card" data-category="dikey">
-          <div class="relative w-full aspect-[9/14] bg-black rounded-t-xl overflow-hidden">
-            <iframe 
-              src="https://www.instagram.com/reel/DaLsGExyhvE/embed/" 
-              class="w-full h-full border-0" 
-              frameborder="0" 
-              scrolling="no" 
-              allowtransparency="true" 
-              allowfullscreen="true">
-            </iframe>
+        <!-- Video 5: Van Gogh Konsept Edit -->
+        <div class="video-card" data-category="sanatsal">
+          <div class="video-card-thumb" onclick="openModal('https://video.twimg.com/ext_tw_video/2040354828233097219/pu/vid/avc1/722x720/kq5vIRIkjzoGSeSH.mp4?tag=19', 'Van Gogh Sanatsal Kurgu', 'Görsel Ritim ve Ses Kompozisyonu', 'https://x.com/izharmedya/status/2040354877411397731')">
+            <img src="https://pbs.twimg.com/ext_tw_video_thumb/2040354828233097219/pu/img/f3RMMZsk70Qb9pgs.jpg" alt="Van Gogh Edit" class="w-full h-full object-cover">
+            <div class="play-overlay">
+              <span class="play-circle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+            <span class="card-badge font-mono">Konsept 1:1</span>
           </div>
           <div class="video-card-body">
-            <div class="text-[12px] font-mono text-ink-muted mb-1">DİKEY REELS • 9:16</div>
-            <h3 class="video-card-title">Dinamik Ritim Kurgusu</h3>
-            <p class="video-card-desc">Hızlı tüketilen sosyal medya formatına uygun dinamik tempo ve altyazı akışı.</p>
-            <div class="flex items-center justify-between pt-2 border-t border-border-subtle mt-2">
-              <span class="text-[11px] font-mono text-emerald-600">● Doğrudan Oynatılabilir</span>
-              <a href="https://www.instagram.com/reel/DaLsGExyhvE/" target="_blank" rel="noopener" class="video-card-link text-[12px]">
-                Instagram'da Aç →
-              </a>
+            <div class="text-[12px] font-mono text-ink-muted mb-1">KONSEPT • 1:1</div>
+            <h3 class="video-card-title">Van Gogh Konsept Kurgusu</h3>
+            <p class="video-card-desc">Sanat eserleri ve kurgu ritminin müzikle birleştiği estetik çalışma.</p>
+            <a href="https://x.com/izharmedya/status/2040354877411397731" target="_blank" rel="noopener" class="video-card-link">
+              X Üzerinde İncele →
+            </a>
+          </div>
+        </div>
+
+        <!-- Video 6: YouTube Kanalı Arşiv Kartı -->
+        <div class="video-card" data-category="dikey">
+          <div class="video-card-thumb bg-surface-elevated flex items-center justify-center p-8">
+            <div class="text-center flex flex-col items-center gap-3">
+              <div class="w-12 h-12 rounded-full border border-border flex items-center justify-center text-ink-muted">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              </div>
+              <span class="text-[14px] font-medium text-ink">@izharmedya</span>
+              <span class="text-[12px] font-mono text-ink-muted">YouTube Shorts Kanalı</span>
             </div>
+          </div>
+          <div class="video-card-body">
+            <div class="text-[12px] font-mono text-ink-muted mb-1">SOSYAL MEDYA • YOUTUBE</div>
+            <h3 class="video-card-title">YouTube Kanal Akışı</h3>
+            <p class="video-card-desc">Düzenli olarak kurgulanmış güncel dikey video arşivi ve kurgu çalışmaları.</p>
+            <a href="https://www.youtube.com/@izharmedya/shorts" target="_blank" rel="noopener" class="video-card-link">
+              YouTube Kanalını Aç →
+            </a>
           </div>
         </div>
 
