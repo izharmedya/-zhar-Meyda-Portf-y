@@ -332,6 +332,12 @@ function handleBackdropClick(event) {
   }
 }
 
+function openInstagramModal(reelUrl, title, meta) {
+  if (reelUrl) {
+    window.open(reelUrl, '_blank', 'noopener,noreferrer');
+  }
+}
+
 // Close on Escape key
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
