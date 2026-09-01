@@ -5,6 +5,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initHeaderScroll();
   initMobileMenu();
+  initAccordions();
   initPixelCanvas();
   initRails();
 });
@@ -17,9 +18,10 @@ function initPixelCanvas() {
   if (!canvas) return;
 
   const ctx = canvas.getContext('2d', { alpha: false });
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let width, height;
   let bgImage = new Image();
-  bgImage.src = 'assets/hero-bg.png';
+  bgImage.src = 'assets/hero-bg.jpg';
 
   let isLoaded = false;
   bgImage.onload = () => {
@@ -114,7 +116,9 @@ function initPixelCanvas() {
   let gameTick = 0;
 
   function render(currentTime) {
-    requestAnimationFrame(render);
+    if (!prefersReducedMotion || !isLoaded) {
+      requestAnimationFrame(render);
+    }
 
     const delta = currentTime - lastTime;
     if (delta < frameInterval) return;
@@ -150,7 +154,7 @@ function initPixelCanvas() {
     // 2. 8-Bit Stepped Pixel Clouds
     ctx.fillStyle = 'rgba(255, 255, 255, 0.22)';
     clouds.forEach(cloud => {
-      cloud.x += cloud.speed * PIXEL_SCALE;
+      if (!prefersReducedMotion) cloud.x += cloud.speed * PIXEL_SCALE;
       if (cloud.x > width + 100) {
         cloud.x = -cloud.width - 60;
       }
@@ -169,15 +173,15 @@ function initPixelCanvas() {
 
     // 3. Atari Flying Birds (Step-by-step Flapping Animation)
     birds.forEach(bird => {
-      bird.x += bird.speed * PIXEL_SCALE;
+      if (!prefersReducedMotion) bird.x += bird.speed * PIXEL_SCALE;
       if (bird.x > width + 50) {
         bird.x = -80;
         bird.y = Math.random() * (height * 0.35) + height * 0.08;
       }
 
       // Change sprite frame every 2 game ticks
-      bird.animTimer++;
-      if (bird.animTimer % 2 === 0) {
+      if (!prefersReducedMotion) bird.animTimer++;
+      if (!prefersReducedMotion && bird.animTimer % 2 === 0) {
         bird.frame = (bird.frame + 1) % birdSprites.length;
       }
 
@@ -189,8 +193,8 @@ function initPixelCanvas() {
 
     // 4. Retro 8-bit Twinkling Sparkles on Meadow & Sun
     sparkles.forEach(s => {
-      s.timer++;
-      if (s.timer % 3 === 0) {
+      if (!prefersReducedMotion) s.timer++;
+      if (!prefersReducedMotion && s.timer % 3 === 0) {
         s.frame = (s.frame + 1) % sparkleSprites.length;
       }
 
@@ -222,20 +226,52 @@ function initMobileMenu() {
   const dropdown = document.getElementById('mobileDropdown');
 
   if (btn && dropdown) {
+    const setOpen = (open) => {
+      dropdown.classList.toggle('hidden', !open);
+      btn.setAttribute('aria-expanded', String(open));
+    };
+
     btn.addEventListener('click', () => {
-      dropdown.classList.toggle('hidden');
+      setOpen(dropdown.classList.contains('hidden'));
     });
 
     // Close on navigation link click
     dropdown.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        dropdown.classList.add('hidden');
+        setOpen(false);
       });
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!dropdown.classList.contains('hidden') && !dropdown.contains(event.target) && !btn.contains(event.target)) {
+        setOpen(false);
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !dropdown.classList.contains('hidden')) {
+        setOpen(false);
+        btn.focus();
+      }
     });
   }
 }
 
 // Accordion Toggle
+function initAccordions() {
+  document.querySelectorAll('.accordion-item').forEach((item, index) => {
+    const button = item.querySelector('.accordion-trigger');
+    const content = item.querySelector('.accordion-content');
+    if (!button || !content) return;
+
+    const panelId = `accordion-panel-${index + 1}`;
+    content.id = panelId;
+    button.setAttribute('aria-controls', panelId);
+    button.setAttribute('aria-expanded', String(item.classList.contains('active')));
+    content.setAttribute('aria-hidden', String(!item.classList.contains('active')));
+  });
+}
+
 function toggleAccordion(button) {
   const item = button.closest('.accordion-item');
   const container = item.parentElement;
@@ -244,10 +280,17 @@ function toggleAccordion(button) {
   // Close other items in the same container
   container.querySelectorAll('.accordion-item').forEach(el => {
     el.classList.remove('active');
+    const trigger = el.querySelector('.accordion-trigger');
+    const content = el.querySelector('.accordion-content');
+    if (trigger) trigger.setAttribute('aria-expanded', 'false');
+    if (content) content.setAttribute('aria-hidden', 'true');
   });
 
   if (!isActive) {
     item.classList.add('active');
+    button.setAttribute('aria-expanded', 'true');
+    const content = item.querySelector('.accordion-content');
+    if (content) content.setAttribute('aria-hidden', 'false');
   }
 }
 
@@ -284,6 +327,17 @@ const modalSource = document.getElementById('modalVideoSource');
 const modalTitle = document.getElementById('modalTitle');
 const modalMeta = document.getElementById('modalMeta');
 const modalExternalLink = document.getElementById('modalExternalLink');
+let lastFocusedElement = null;
+
+function showModal() {
+  if (!modal) return;
+  lastFocusedElement = document.activeElement;
+  modal.classList.remove('hidden');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+  const closeButton = modal.querySelector('.modal-close-btn');
+  if (closeButton) requestAnimationFrame(() => closeButton.focus());
+}
 
 // Open MP4 Modal
 function openModal(videoSrc, title, meta, externalUrl) {
@@ -305,7 +359,7 @@ function openModal(videoSrc, title, meta, externalUrl) {
   modalPlayer.classList.remove('hidden');
   modalSource.src = videoSrc;
   modalPlayer.load();
-  modal.classList.remove('hidden');
+  showModal();
   
   modalPlayer.play().catch(e => {
     console.log('Autoplay pending:', e);
@@ -332,6 +386,7 @@ function openEmbedModal(embedSrc, title, meta, externalUrl) {
     iframe.setAttribute('allowfullscreen', 'true');
     document.querySelector('.modal-body').appendChild(iframe);
   }
+  iframe.title = title;
   iframe.classList.remove('hidden');
   iframe.src = embedSrc;
 
@@ -342,7 +397,7 @@ function openEmbedModal(embedSrc, title, meta, externalUrl) {
   const container = modal.querySelector('.modal-container');
   if (container) container.classList.add('modal-vertical');
 
-  modal.classList.remove('hidden');
+  showModal();
 }
 
 function closeModal() {
@@ -360,6 +415,11 @@ function closeModal() {
   const container = modal.querySelector('.modal-container');
   if (container) container.classList.remove('modal-vertical');
   modal.classList.add('hidden');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+  if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+    lastFocusedElement.focus();
+  }
 }
 
 function handleBackdropClick(event) {
@@ -373,15 +433,30 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
     closeModal();
   }
+
+  if (e.key === 'Tab' && modal && !modal.classList.contains('hidden')) {
+    const focusable = Array.from(modal.querySelectorAll('button, a[href], video[controls], [tabindex]:not([tabindex="-1"])'))
+      .filter(element => !element.hasAttribute('disabled'));
+    if (focusable.length === 0) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
 });
 
 
 // ==========================================================================
-// Yatay Kaydırmalı Şerit (Rail) — kendiliğinden sağa akan, sürüklenebilir,
-// ok tuşlarıyla da kontrol edilebilen sonsuz döngü şerit.
+// Yatay Kaydırmalı Şerit (Rail) — manuel kaydırma, sürükleme ve ok kontrolü.
 // ==========================================================================
 
-// Ok tuşu: bir kart genişliği + boşluk kadar kaydırır (kesintisiz döngüyü kısa süreliğine durdurur).
+// Ok tuşu: iki kart genişliği + boşluk kadar kaydırır.
 function railScroll(railId, direction) {
   const rail = document.getElementById(railId);
   if (!rail) return;
@@ -390,14 +465,9 @@ function railScroll(railId, direction) {
   const gap = parseFloat(getComputedStyle(rail).columnGap || getComputedStyle(rail).gap) || 18;
   const step = card ? (card.offsetWidth + gap) * 2 : rail.clientWidth * 0.8;
 
-  // 'behavior: smooth' burada CSS'teki scroll-behavior:auto'yu geçersiz kılar.
   rail.scrollBy({ left: step * direction, behavior: 'smooth' });
-
-  if (rail._notifyManualInteraction) rail._notifyManualInteraction();
 }
 
-// Her şeridi kesintisiz sağa akıtır; kullanıcı üzerine gelince/sürükleyince
-// durur, bıraktıktan kısa süre sonra kendiliğinden devam eder.
 function initRails() {
   document.querySelectorAll('.rail-wrap').forEach(wrap => {
     const rail = wrap.querySelector('.rail');
@@ -405,45 +475,34 @@ function initRails() {
     const next = wrap.querySelector('.rail-next');
     if (!rail) return;
 
-    const originalCards = Array.from(rail.children);
-    if (originalCards.length === 0) return;
+    const cards = Array.from(rail.querySelectorAll('.rail-card'));
+    if (cards.length === 0) return;
 
-    // 5'ten az kart varsa sonsuz döngü çok çabuk tekrar ettiği için
-    // (aynı kart bir ekran genişliği içinde iki kez görünüyor, kopuk/hatalı
-    // görünüyor) otomatik akış ve klonlama tamamen atlanır — kart ok
-    // tuşlarıyla ve sürükleyerek yine gezilebilir, sadece kendiliğinden akmaz.
-    const canAutoScroll = originalCards.length >= 5;
+    const sectionTitle = wrap.closest('section')?.querySelector('h2')?.textContent?.trim() || 'Video seçkisi';
+    rail.setAttribute('aria-label', sectionTitle);
 
-    if (canAutoScroll) {
-      // Sonsuz döngü hissi için içerik bir kez klonlanıp arkasına eklenir.
-      originalCards.forEach(card => rail.appendChild(card.cloneNode(true)));
+    cards.forEach(card => {
+      const title = card.querySelector('.rail-title')?.textContent?.trim() || 'Video';
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('aria-label', `${title} videosunu aç`);
+      card.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          card.click();
+        }
+      });
+    });
+
+    function updateNavigation() {
+      const maxScroll = Math.max(0, rail.scrollWidth - rail.clientWidth);
+      if (prev) prev.disabled = rail.scrollLeft <= 2;
+      if (next) next.disabled = rail.scrollLeft >= maxScroll - 2 || maxScroll <= 2;
     }
 
-    // Otomatik akış sırasında ani zıplama olmasın diye CSS'in smooth
-    // davranışı bu elemanda kapatılır; ok tuşları scrollBy({behavior:'smooth'})
-    // ile kendi animasyonunu zaten CSS'in önüne geçirerek sağlıyor.
-    rail.style.scrollBehavior = 'auto';
-
-    const SPEED = 0.45; // px / kare (~60fps'te saniyede ~27px)
-    let autoScroll = canAutoScroll;
-    let resumeTimer = null;
-
-    function pause() {
-      autoScroll = false;
-      clearTimeout(resumeTimer);
-    }
-    function scheduleResume(delay = 2200) {
-      if (!canAutoScroll) return;
-      clearTimeout(resumeTimer);
-      resumeTimer = setTimeout(() => { autoScroll = true; }, delay);
-    }
-    rail._notifyManualInteraction = () => scheduleResume();
-
-    // Fare/dokunma ile üzerine gelince veya sürüklerken otomatik akış durur.
-    rail.addEventListener('mouseenter', pause);
-    rail.addEventListener('mouseleave', () => scheduleResume(500));
-    rail.addEventListener('touchstart', pause, { passive: true });
-    rail.addEventListener('touchend', () => scheduleResume(), { passive: true });
+    rail.addEventListener('scroll', updateNavigation, { passive: true });
+    window.addEventListener('resize', updateNavigation);
+    requestAnimationFrame(updateNavigation);
 
     // Masaüstünde fareyle tutup sürükleyerek de kaydırma (elle çevirme).
     let isDragging = false;
@@ -458,7 +517,6 @@ function initRails() {
       startX = e.clientX;
       startScrollLeft = rail.scrollLeft;
       rail.classList.add('rail-dragging');
-      pause();
     });
 
     rail.addEventListener('pointermove', (e) => {
@@ -472,7 +530,7 @@ function initRails() {
       if (!isDragging) return;
       isDragging = false;
       rail.classList.remove('rail-dragging');
-      scheduleResume();
+      updateNavigation();
     }
     rail.addEventListener('pointerup', endDrag);
     rail.addEventListener('pointerleave', endDrag);
@@ -487,21 +545,5 @@ function initRails() {
       }
     }, true);
 
-    if (prev) prev.addEventListener('click', () => scheduleResume());
-    if (next) next.addEventListener('click', () => scheduleResume());
-
-    if (!canAutoScroll) return;
-
-    function tick() {
-      if (autoScroll) {
-        const half = rail.scrollWidth / 2;
-        rail.scrollLeft += SPEED;
-        if (rail.scrollLeft >= half) {
-          rail.scrollLeft -= half;
-        }
-      }
-      requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
   });
 }

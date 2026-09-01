@@ -35,15 +35,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;410;460;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/hero-bg.jpg" as="image" type="image/jpeg">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2318181b'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Georgia,serif' font-size='34' fill='white'%3Eİ%3C/text%3E%3C/svg%3E">
 
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="min-h-full flex flex-col bg-surface text-ink antialiased">
 
+  <a href="#mainContent" class="skip-link">Ana içeriğe geç</a>
+
   <!-- Header / Navigation (Cofounder Glass Navbar) -->
   <header class="site-header fixed top-0 left-0 right-0 z-50 flex justify-center py-4 px-4 sm:px-6 transition-all duration-300">
     <!-- w-full: logo sola, nav ortaya, CTA sağa yaslanır -->
-    <div class="w-full max-w-[1280px] mx-auto px-5 sm:px-8 flex items-center justify-between gap-4">
+    <div class="header-inner w-full mx-auto flex items-center justify-between gap-3">
 
       <!-- Brand Logo -->
       <a href="#hero" class="brand-logo flex items-center gap-2 group shrink-0">
@@ -66,14 +70,14 @@
       </nav>
 
       <!-- Right CTA Button -->
-      <div class="hidden sm:flex items-center gap-3 shrink-0">
+      <div class="flex items-center gap-3 shrink-0 ml-auto md:ml-0">
         <a href="#iletisim" class="cta-btn">
           İletişim
         </a>
       </div>
 
       <!-- Mobile Hamburger Button -->
-      <button id="mobileMenuBtn" class="md:hidden glass-btn p-2.5 rounded-lg text-white" aria-label="Menü">
+      <button id="mobileMenuBtn" type="button" class="md:hidden glass-btn p-2.5 rounded-lg text-white" aria-label="Menü" aria-expanded="false" aria-controls="mobileDropdown">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="12" x2="21" y2="12"></line>
           <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -94,36 +98,38 @@
     </div>
   </header>
 
+  <main id="mainContent">
+
   <!-- Hero Section (Live Animated Pixel Canvas & Cofounder Glass Badges) -->
-  <section id="hero" class="relative w-full min-h-[92vh] flex items-center justify-center overflow-hidden pt-24 pb-16">
+  <section id="hero" class="relative w-full flex items-center justify-center overflow-hidden pt-24 pb-16">
 
     <!-- Animated Pixel Art Canvas Background -->
     <div class="absolute inset-0 z-0 overflow-hidden">
-      <canvas id="pixelCanvas" class="w-full h-full object-cover"></canvas>
+      <canvas id="pixelCanvas" class="w-full h-full object-cover" aria-hidden="true"></canvas>
       <!-- Directional contrast overlay: darker on the left for text legibility, open on the right -->
       <div class="hero-gradient-overlay"></div>
     </div>
 
-    <div class="relative z-10 w-full max-w-[1280px] mx-auto px-5 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div class="hero-content relative z-10 w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
       <!-- Hero Left: High-Contrast Typography & Intro -->
       <div class="lg:col-span-7 flex flex-col items-start text-left hero-text-wrapper">
 
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill-badge mb-6 shadow-md">
           <span class="status-dot"></span>
-          <span class="text-[13px] font-mono text-white font-medium">Video Kurgu & Ses Tasarımı</span>
+          <span class="text-[13px] font-mono text-white font-medium">Kurgu · After Effects · Unreal Engine</span>
         </div>
 
         <h1 class="text-[38px] sm:text-[48px] lg:text-[54px] font-normal leading-[1.12] text-white tracking-[-0.02em] mb-5 hero-headline">
-          Kurgu bir matematik problemi değil.
+          Video kurgu, ses tasarımı ve 3D.
         </h1>
 
         <p class="text-[16px] sm:text-[17.5px] leading-[1.6] text-white/90 max-w-[580px] mb-8 font-light hero-subtext">
-          Bir kurgunun değeri taşıdığı efekt sayısıyla değil, hangi kesimin neden orada olduğuyla ölçülür. İzhar Medya'da her kesim bir öncekinin devamı olarak kurulur; müzik, ritim ve 3D ise ancak sahnenin ihtiyacı olduğunda devreye girer.
+          YouTube ve sosyal medya için kısa ve uzun format videolar hazırlıyorum. Kurgu, ses düzeni, motion design ve Unreal Engine sahneleri aynı üretim akışında tamamlanır.
         </p>
 
-        <div class="flex flex-wrap items-center gap-3.5 w-full sm:w-auto">
-          <a href="#kurgular" class="hero-primary-btn">
+        <div class="hero-actions flex flex-wrap items-center gap-3.5 w-full sm:w-auto">
+          <a href="#after-effects" class="hero-primary-btn">
             Çalışmaları İncele
           </a>
           <button type="button" class="hero-glass-btn"
@@ -135,39 +141,39 @@
       </div>
 
       <!-- Hero Right: Floating Cofounder-style Live Task Pills -->
-      <div class="lg:col-span-5 flex flex-col gap-3.5 max-w-[440px] w-full mx-auto lg:mx-0">
+      <div class="hero-proof-list lg:col-span-5 flex flex-col gap-3 max-w-[390px] w-full mx-auto lg:ml-auto lg:mr-0">
 
         <div class="floating-task-card">
           <div class="flex items-center justify-between mb-1.5">
             <span class="flex items-center gap-2 text-[12px] font-mono text-white/70">
               <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-              Ses Tasarımı & Ritim
+              Video Kurgu
             </span>
-            <span class="text-[11px] font-mono text-white/50">Ses Felsefesi</span>
+            <span class="text-[11px] font-mono text-white/60">Premiere Pro</span>
           </div>
-          <p class="text-[14px] text-white font-medium">Ses tasarımında boşluğu doldurmak değil, nerede duracağını bilmek belirleyicidir.</p>
+          <p class="text-[14px] text-white font-medium">Kısa ve uzun format videolar için kurgu, ses düzeni ve teslim.</p>
         </div>
 
         <div class="floating-task-card">
           <div class="flex items-center justify-between mb-1.5">
             <span class="flex items-center gap-2 text-[12px] font-mono text-white/70">
               <span class="w-2 h-2 rounded-full bg-blue-400"></span>
-              Anlatı & İzlenme
+              Motion Design
             </span>
-            <span class="text-[11px] font-mono text-white/50">Doğal Sonuç</span>
+            <span class="text-[11px] font-mono text-white/60">After Effects</span>
           </div>
-          <p class="text-[14px] text-white font-medium">İzlenme süresi hedeflenerek değil, doğru sıralanmış bir anlatının doğal sonucu olarak elde edilir.</p>
+          <p class="text-[14px] text-white font-medium">Dikey video, açıklayıcı grafik ve kompozit çalışmaları.</p>
         </div>
 
         <div class="floating-task-card">
           <div class="flex items-center justify-between mb-1.5">
             <span class="flex items-center gap-2 text-[12px] font-mono text-white/70">
               <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-              Unreal Engine 3D
+              3D Sahne
             </span>
-            <span class="text-[11px] font-mono text-white/50">Yapay Zekasız</span>
+            <span class="text-[11px] font-mono text-white/60">Unreal Engine 5</span>
           </div>
-          <p class="text-[14px] text-white font-medium">Sahnenin gerçek ihtiyacı olduğunda devreye giren özgün 3D modelleme ve kamera kurgusu.</p>
+          <p class="text-[14px] text-white font-medium">Sahne kurulumu, ışık, kamera hareketi ve render.</p>
         </div>
 
       </div>
@@ -176,20 +182,34 @@
 
   </section>
 
+  <section class="intro-section" aria-labelledby="introTitle">
+    <div class="intro-inner">
+      <span class="section-tag font-mono">İZHAR MEDYA</span>
+      <h2 id="introTitle">Video üretiminin kurgu, motion design ve 3D aşamaları.</h2>
+      <p>Aşağıdaki seçkide kişisel çalışmalar, müşteri işleri, kısa anlatım videoları ve Unreal Engine sahneleri yer alıyor.</p>
+      <div class="tool-list" aria-label="Kullanılan araçlar ve içerik türleri">
+        <span>Premiere Pro</span>
+        <span>After Effects</span>
+        <span>Unreal Engine 5</span>
+        <span>YouTube Shorts</span>
+      </div>
+    </div>
+  </section>
+
 
   <!-- ======================================================================
        01 — İzhar'ın Kurguları (eski adıyla "YouTube Shorts" bölümü — kimlik
        başlığı buraya taşındı, içerik aynı 6 short)
        ====================================================================== -->
   <section id="kurgular" class="section-container bg-surface border-b border-border-subtle">
-    <div class="max-w-[1280px] mx-auto px-5 sm:px-8 w-full">
+    <div class="max-w-[1120px] mx-auto px-5 sm:px-8 w-full">
 
       <div class="section-head">
         <div>
-          <span class="section-tag font-mono">01 — İZHAR'IN KURGULARI</span>
-          <h2 class="section-title mb-2">Öncelik müzik düzeni ve hikaye anlatımı.</h2>
+          <span class="section-tag font-mono">01 — KURGU ÜZERİNE</span>
+          <h2 class="section-title mb-2">Kurgu tekniklerini anlattığım kısa videolar.</h2>
           <p class="section-description mb-0 max-w-[560px]">
-            Kurgu psikolojisi, kompozisyon teknikleri ve tempo üzerine hazırladığım kısa videolar. Tıklayınca genişletilmiş ekranda oynar.
+            Kompozisyon, montaj, ritim ve hikâye anlatımı üzerine hazırladığım YouTube Shorts içerikleri.
           </p>
         </div>
         <a href="https://www.youtube.com/@izharmedya/shorts" target="_blank" rel="noopener" class="section-head-link">
@@ -295,14 +315,14 @@
        o başlık 01 numaralı bölüme taşındı.
        ====================================================================== -->
   <section id="after-effects" class="section-container bg-surface-alt border-b border-border-subtle">
-    <div class="max-w-[1280px] mx-auto px-5 sm:px-8 w-full">
+    <div class="max-w-[1120px] mx-auto px-5 sm:px-8 w-full">
 
       <div class="section-head">
         <div>
           <span class="section-tag font-mono">02 — AFTER EFFECTS</span>
-          <h2 class="section-title mb-2">After Effects ile kurgulanan videolar.</h2>
+          <h2 class="section-title mb-2">After Effects çalışmaları.</h2>
           <p class="section-description mb-0 max-w-[560px]">
-            Altay Cem Meriç için hazırladığım kurgular ve After Effects denemeleri.
+            Motion design, dikey video ve kompozit kurgu kullandığım seçili çalışmalar.
           </p>
         </div>
       </div>
@@ -407,14 +427,14 @@
        04 — Tangör Urkan İçin (hesap ona ait, kurgusunu İzhar Medya yaptı)
        ====================================================================== -->
   <section id="tangor-urkan" class="section-container bg-surface border-b border-border-subtle">
-    <div class="max-w-[1280px] mx-auto px-5 sm:px-8 w-full">
+    <div class="max-w-[1120px] mx-auto px-5 sm:px-8 w-full">
 
       <div class="section-head">
         <div>
           <span class="section-tag font-mono">03 — TANGÖR URKAN İÇİN</span>
-          <h2 class="section-title mb-2">Tangör Urkan için hazırladığım kurgular.</h2>
+          <h2 class="section-title mb-2">Tangör Urkan kanalı için hazırladığım videolar.</h2>
           <p class="section-description mb-0 max-w-[560px]">
-            Tangör Urkan'ın YouTube kanalı için kurguladığım videolar.
+            Tangör Urkan'ın YouTube kanalı için kurguladığım üç dikey video.
           </p>
         </div>
       </div>
@@ -424,7 +444,7 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </button>
 
-        <div class="rail" id="tangorRail">
+        <div class="rail rail-static-grid" id="tangorRail">
 
           <div class="rail-card" onclick="openEmbedModal('https://www.youtube-nocookie.com/embed/Vmz8Aa8xtlc?autoplay=1&rel=0&modestbranding=1&playsinline=1', 'Komplo Denilen Hakikatler ve Anadolu İrfanı', 'Tangör Urkan için kurgu', 'https://youtube.com/shorts/Vmz8Aa8xtlc')">
             <div class="rail-thumb">
@@ -477,14 +497,14 @@
        05 — Anlatım Videoları (liste dışı, soru-cevap formatı)
        ====================================================================== -->
   <section id="anlatim-videolari" class="section-container bg-surface-alt border-b border-border-subtle">
-    <div class="max-w-[1280px] mx-auto px-5 sm:px-8 w-full">
+    <div class="max-w-[1120px] mx-auto px-5 sm:px-8 w-full">
 
       <div class="section-head">
         <div>
           <span class="section-tag font-mono">04 — ANLATIM VİDEOLARI</span>
-          <h2 class="section-title mb-2">Soru-cevap formatında videolar.</h2>
+          <h2 class="section-title mb-2">Soru-cevap videoları.</h2>
           <p class="section-description mb-0 max-w-[560px]">
-            YouTube'da liste dışı yayınladığım anlatım videoları.
+            Kısa formatta hazırladığım sekiz soru-cevap videosu.
           </p>
         </div>
       </div>
@@ -614,36 +634,34 @@
 
         <span class="section-tag font-mono">05 — 3D & UNREAL ENGINE</span>
 
-        <h2 class="section-title">
-          Yapay zeka kullanılmadan hazırlanan Unreal Engine 3D animasyonları.
-        </h2>
+        <h2 class="section-title">Unreal Engine ile hazırladığım 3D çalışmalar.</h2>
 
         <p class="section-description">
-          Hazır yapay zeka jeneratörleri yerine; sahne tasarımı, ışıklandırma, kamera hareketleri ve metin düzeni doğrudan Unreal Engine 3D motoru üzerinde elle inşa edilir.
+          Sahne kurulumu, ışık, kamera hareketi ve render işlemleri Unreal Engine 5 içinde hazırlandı.
         </p>
 
         <!-- Numbered Accordion List -->
         <div class="accordion-list w-full">
 
           <div class="accordion-item active">
-            <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <button type="button" class="accordion-trigger" onclick="toggleAccordion(this)">
               <span class="accordion-number font-mono">5.1</span>
-              <span class="accordion-title">Peygamberliğin İspatı — Kitap İnceleme İntrosu</span>
+              <span class="accordion-title">Peygamberliğin İspatı — 3D intro</span>
               <span class="accordion-icon">+</span>
             </button>
             <div class="accordion-content">
-              <p>Altay Cem Meriç'in 'Peygamberliğin İspatı' kitabı için Unreal Engine'de saatlerce modellenen sinematik kamera geçişleri, seslendirme ve intro kurgusu.</p>
+              <p>Kitap tanıtımı için hazırlanan sahne, kamera hareketleri, intro kurgusu ve ses düzeni.</p>
             </div>
           </div>
 
           <div class="accordion-item">
-            <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <button type="button" class="accordion-trigger" onclick="toggleAccordion(this)">
               <span class="accordion-number font-mono">5.2</span>
-              <span class="accordion-title">%100 Özgün Modelleme & Render</span>
+              <span class="accordion-title">Üretim kapsamı</span>
               <span class="accordion-icon">+</span>
             </button>
             <div class="accordion-content">
-              <p>Yapay zeka kusurları ve yapay dokular içermez. Gerçek zamanlı ışıklandırma (Lumen) ve sinematik kamera derinliğiyle net ve kurumsal bir sonuç sağlar.</p>
+              <p>Modelleme, materyal, ışık, kamera ve render işlemleri Unreal Engine 5 içinde tamamlandı.</p>
             </div>
           </div>
 
@@ -662,7 +680,7 @@
               <span class="window-dot bg-[#27C93F]"></span>
             </div>
             <div class="text-[12px] font-mono text-ink-muted truncate">UnrealEngine_Scene_Master.uproject</div>
-            <div class="text-[11px] font-mono text-amber-600">NO AI</div>
+            <div class="text-[11px] font-mono text-amber-600">UNREAL ENGINE 5</div>
           </div>
 
           <div class="p-5 flex flex-col gap-4">
@@ -671,7 +689,7 @@
                 <source src="https://video.twimg.com/ext_tw_video/2036563775344746498/pu/vid/avc1/1280x720/onPajsVJra2R5MMG.mp4?tag=19" type="video/mp4">
               </video>
 
-              <button onclick="toggleInlinePlay('previewVideo2', this)" class="inline-play-btn" aria-label="Oynat">
+              <button type="button" onclick="toggleInlinePlay('previewVideo2', this)" class="inline-play-btn" aria-label="Oynat">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M8 5v14l11-7z"/>
                 </svg>
@@ -695,9 +713,21 @@
   </section>
 
 
+  <section id="iletisim" class="contact-section" aria-labelledby="contactTitle">
+    <div class="contact-inner">
+      <span class="contact-kicker font-mono">İLETİŞİM</span>
+      <h2 id="contactTitle">Video kurgu veya Unreal Engine çalışması için iletişime geçin.</h2>
+      <p>Kısa ve uzun format video, After Effects veya 3D sahne çalışmaları için bu adresten ulaşabilirsiniz.</p>
+      <a class="contact-button" href="mailto:izharmedya@gmail.com">izharmedya@gmail.com</a>
+    </div>
+  </section>
+
+  </main>
+
+
   <!-- Footer -->
-  <footer id="iletisim" class="w-full py-8 border-t border-border-subtle bg-surface-alt text-center">
-    <div class="max-w-[1280px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+  <footer class="w-full py-8 border-t border-border-subtle bg-surface-alt text-center">
+    <div class="max-w-[1120px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
       <span class="text-[14px] font-serif text-ink">İzhar Medya</span>
       <span class="text-[13px] font-mono text-ink-muted">© 2026 İzhar Medya — Video Kurgu & Portfolyo</span>
       <div class="flex flex-wrap items-center justify-center gap-4 text-[13px] font-mono text-ink-muted">
@@ -710,15 +740,15 @@
   </footer>
 
   <!-- Video Playback Modal -->
-  <div id="videoModal" class="modal-backdrop hidden" onclick="handleBackdropClick(event)">
-    <div class="modal-container">
+  <div id="videoModal" class="modal-backdrop hidden" onclick="handleBackdropClick(event)" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-container" tabindex="-1">
 
       <div class="modal-header">
         <div class="flex flex-col">
           <h3 id="modalTitle" class="modal-title font-medium">Video Başlığı</h3>
           <span id="modalMeta" class="text-[12px] font-mono text-ink-muted">Video Detayı</span>
         </div>
-        <button onclick="closeModal()" class="modal-close-btn" aria-label="Kapat">
+        <button type="button" onclick="closeModal()" class="modal-close-btn" aria-label="Kapat">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
