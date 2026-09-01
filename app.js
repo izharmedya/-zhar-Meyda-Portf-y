@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeaderScroll();
   initMobileMenu();
   initAccordions();
-  initPixelCanvas();
   initRails();
 });
 
