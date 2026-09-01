@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeaderScroll();
   initMobileMenu();
   initPixelCanvas();
+  initRails();
 });
 
 // ==========================================================================
@@ -250,25 +251,6 @@ function toggleAccordion(button) {
   }
 }
 
-// Gallery Filter
-function filterGallery(category, button) {
-  // Update button active states
-  const buttons = document.querySelectorAll('.filter-btn');
-  buttons.forEach(btn => btn.classList.remove('active'));
-  button.classList.add('active');
-
-  // Filter video cards
-  const cards = document.querySelectorAll('.video-card');
-  cards.forEach(card => {
-    const cardCat = card.getAttribute('data-category');
-    if (category === 'all' || cardCat === category) {
-      card.style.display = 'flex';
-    } else {
-      card.style.display = 'none';
-    }
-  });
-}
-
 // Inline Video Player Toggle
 function toggleInlinePlay(videoId, button) {
   const video = document.getElementById(videoId);
@@ -295,59 +277,13 @@ function toggleInlinePlay(videoId, button) {
   });
 }
 
-// Modal Video & YouTube Player
+// Modal Video Player
 const modal = document.getElementById('videoModal');
 const modalPlayer = document.getElementById('modalVideoPlayer');
 const modalSource = document.getElementById('modalVideoSource');
 const modalTitle = document.getElementById('modalTitle');
 const modalMeta = document.getElementById('modalMeta');
 const modalExternalLink = document.getElementById('modalExternalLink');
-
-// In-Card Play YouTube
-function playYouTubeInCard(containerId, videoId, title) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-  
-  container.innerHTML = `
-    <iframe 
-      src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1" 
-      title="${title}" 
-      class="w-full h-full border-0 rounded-t-xl" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-      referrerpolicy="strict-origin-when-cross-origin"
-      allowfullscreen>
-    </iframe>
-  `;
-}
-
-// Open YouTube Modal
-function openYouTubeModal(videoId, title, meta) {
-  if (!modal) return;
-  modalTitle.textContent = title;
-  modalMeta.textContent = meta;
-  modalExternalLink.href = `https://www.youtube.com/shorts/${videoId}`;
-
-  if (modalPlayer) {
-    modalPlayer.pause();
-    modalPlayer.classList.add('hidden');
-  }
-
-  let iframe = document.getElementById('modalIframePlayer');
-  if (!iframe) {
-    iframe = document.createElement('iframe');
-    iframe.id = 'modalIframePlayer';
-    iframe.className = 'w-full h-[620px] max-h-[75vh] border-0 rounded-lg';
-    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
-    iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
-    iframe.setAttribute('allowfullscreen', 'true');
-    const modalBody = document.querySelector('.modal-body');
-    if (modalBody) modalBody.appendChild(iframe);
-  }
-
-  iframe.classList.remove('hidden');
-  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
-  modal.classList.remove('hidden');
-}
 
 // Open MP4 Modal
 function openModal(videoSrc, title, meta, externalUrl) {
@@ -363,6 +299,9 @@ function openModal(videoSrc, title, meta, externalUrl) {
   modalMeta.textContent = meta;
   modalExternalLink.href = externalUrl;
 
+  const container = modal.querySelector('.modal-container');
+  if (container) container.classList.remove('modal-vertical');
+
   modalPlayer.classList.remove('hidden');
   modalSource.src = videoSrc;
   modalPlayer.load();
@@ -371,6 +310,39 @@ function openModal(videoSrc, title, meta, externalUrl) {
   modalPlayer.play().catch(e => {
     console.log('Autoplay pending:', e);
   });
+}
+
+// Open YouTube / Instagram Embed Modal (dikey, genişletilmiş ekran)
+function openEmbedModal(embedSrc, title, meta, externalUrl) {
+  if (!modal) return;
+
+  if (modalPlayer) {
+    modalPlayer.pause();
+    if (modalSource) modalSource.src = '';
+    modalPlayer.classList.add('hidden');
+  }
+
+  let iframe = document.getElementById('modalIframePlayer');
+  if (!iframe) {
+    iframe = document.createElement('iframe');
+    iframe.id = 'modalIframePlayer';
+    iframe.className = 'modal-iframe';
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+    iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    iframe.setAttribute('allowfullscreen', 'true');
+    document.querySelector('.modal-body').appendChild(iframe);
+  }
+  iframe.classList.remove('hidden');
+  iframe.src = embedSrc;
+
+  modalTitle.textContent = title;
+  modalMeta.textContent = meta;
+  modalExternalLink.href = externalUrl;
+
+  const container = modal.querySelector('.modal-container');
+  if (container) container.classList.add('modal-vertical');
+
+  modal.classList.remove('hidden');
 }
 
 function closeModal() {
@@ -385,6 +357,8 @@ function closeModal() {
     iframe.src = '';
     iframe.classList.add('hidden');
   }
+  const container = modal.querySelector('.modal-container');
+  if (container) container.classList.remove('modal-vertical');
   modal.classList.add('hidden');
 }
 
@@ -400,3 +374,134 @@ document.addEventListener('keydown', (e) => {
     closeModal();
   }
 });
+
+
+// ==========================================================================
+// Yatay Kaydırmalı Şerit (Rail) — kendiliğinden sağa akan, sürüklenebilir,
+// ok tuşlarıyla da kontrol edilebilen sonsuz döngü şerit.
+// ==========================================================================
+
+// Ok tuşu: bir kart genişliği + boşluk kadar kaydırır (kesintisiz döngüyü kısa süreliğine durdurur).
+function railScroll(railId, direction) {
+  const rail = document.getElementById(railId);
+  if (!rail) return;
+
+  const card = rail.querySelector('.rail-card');
+  const gap = parseFloat(getComputedStyle(rail).columnGap || getComputedStyle(rail).gap) || 18;
+  const step = card ? (card.offsetWidth + gap) * 2 : rail.clientWidth * 0.8;
+
+  // 'behavior: smooth' burada CSS'teki scroll-behavior:auto'yu geçersiz kılar.
+  rail.scrollBy({ left: step * direction, behavior: 'smooth' });
+
+  if (rail._notifyManualInteraction) rail._notifyManualInteraction();
+}
+
+// Her şeridi kesintisiz sağa akıtır; kullanıcı üzerine gelince/sürükleyince
+// durur, bıraktıktan kısa süre sonra kendiliğinden devam eder.
+function initRails() {
+  document.querySelectorAll('.rail-wrap').forEach(wrap => {
+    const rail = wrap.querySelector('.rail');
+    const prev = wrap.querySelector('.rail-prev');
+    const next = wrap.querySelector('.rail-next');
+    if (!rail) return;
+
+    const originalCards = Array.from(rail.children);
+    if (originalCards.length === 0) return;
+
+    // 5'ten az kart varsa sonsuz döngü çok çabuk tekrar ettiği için
+    // (aynı kart bir ekran genişliği içinde iki kez görünüyor, kopuk/hatalı
+    // görünüyor) otomatik akış ve klonlama tamamen atlanır — kart ok
+    // tuşlarıyla ve sürükleyerek yine gezilebilir, sadece kendiliğinden akmaz.
+    const canAutoScroll = originalCards.length >= 5;
+
+    if (canAutoScroll) {
+      // Sonsuz döngü hissi için içerik bir kez klonlanıp arkasına eklenir.
+      originalCards.forEach(card => rail.appendChild(card.cloneNode(true)));
+    }
+
+    // Otomatik akış sırasında ani zıplama olmasın diye CSS'in smooth
+    // davranışı bu elemanda kapatılır; ok tuşları scrollBy({behavior:'smooth'})
+    // ile kendi animasyonunu zaten CSS'in önüne geçirerek sağlıyor.
+    rail.style.scrollBehavior = 'auto';
+
+    const SPEED = 0.45; // px / kare (~60fps'te saniyede ~27px)
+    let autoScroll = canAutoScroll;
+    let resumeTimer = null;
+
+    function pause() {
+      autoScroll = false;
+      clearTimeout(resumeTimer);
+    }
+    function scheduleResume(delay = 2200) {
+      if (!canAutoScroll) return;
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => { autoScroll = true; }, delay);
+    }
+    rail._notifyManualInteraction = () => scheduleResume();
+
+    // Fare/dokunma ile üzerine gelince veya sürüklerken otomatik akış durur.
+    rail.addEventListener('mouseenter', pause);
+    rail.addEventListener('mouseleave', () => scheduleResume(500));
+    rail.addEventListener('touchstart', pause, { passive: true });
+    rail.addEventListener('touchend', () => scheduleResume(), { passive: true });
+
+    // Masaüstünde fareyle tutup sürükleyerek de kaydırma (elle çevirme).
+    let isDragging = false;
+    let dragMoved = false;
+    let startX = 0;
+    let startScrollLeft = 0;
+
+    rail.addEventListener('pointerdown', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      isDragging = true;
+      dragMoved = false;
+      startX = e.clientX;
+      startScrollLeft = rail.scrollLeft;
+      rail.classList.add('rail-dragging');
+      pause();
+    });
+
+    rail.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+      const delta = e.clientX - startX;
+      if (Math.abs(delta) > 4) dragMoved = true;
+      rail.scrollLeft = startScrollLeft - delta;
+    });
+
+    function endDrag() {
+      if (!isDragging) return;
+      isDragging = false;
+      rail.classList.remove('rail-dragging');
+      scheduleResume();
+    }
+    rail.addEventListener('pointerup', endDrag);
+    rail.addEventListener('pointerleave', endDrag);
+
+    // Sürükleme bir tıklama gibi algılanıp video modalını açmasın diye,
+    // sürükleme gerçekleştiyse hemen sonraki click event'i bastırılır.
+    rail.addEventListener('click', (e) => {
+      if (dragMoved) {
+        e.preventDefault();
+        e.stopPropagation();
+        dragMoved = false;
+      }
+    }, true);
+
+    if (prev) prev.addEventListener('click', () => scheduleResume());
+    if (next) next.addEventListener('click', () => scheduleResume());
+
+    if (!canAutoScroll) return;
+
+    function tick() {
+      if (autoScroll) {
+        const half = rail.scrollWidth / 2;
+        rail.scrollLeft += SPEED;
+        if (rail.scrollLeft >= half) {
+          rail.scrollLeft -= half;
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+}

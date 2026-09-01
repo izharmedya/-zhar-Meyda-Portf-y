@@ -80,7 +80,8 @@ body {
   padding-bottom: 12px;
 }
 
-.site-header.scrolled .brand-logo {
+.site-header.scrolled .brand-logo,
+.site-header.scrolled .brand-logo span {
   color: var(--ink);
 }
 
@@ -260,6 +261,8 @@ body {
 }
 
 .hero-glass-btn {
+  font-family: inherit;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -309,12 +312,17 @@ body {
 
 .section-container {
   width: 100%;
-  padding: 96px 0;
+  padding: 56px 0;
   position: relative;
 }
 
+@media (min-width: 768px) {
+  .section-container {
+    padding: 78px 0;
+  }
+}
+
 .section-inner {
-  max-w: 1280px;
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 20px;
@@ -519,194 +527,6 @@ body {
   font-weight: 350;
 }
 
-/* ==========================================================================
-   Filterable Video Gallery
-   ========================================================================== */
-
-.filter-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.filter-btn {
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 13.5px;
-  font-weight: 460;
-  border: 1px solid var(--border);
-  background: var(--surface-elevated);
-  color: var(--ink-secondary);
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.filter-btn:hover {
-  border-color: rgba(24, 24, 27, 0.3);
-  color: var(--ink);
-}
-
-.filter-btn.active {
-  background: #18181B;
-  color: #FFFFFF;
-  border-color: #18181B;
-}
-
-/* Video Card */
-.video-card {
-  background: var(--surface-elevated);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
-  transition: all 0.2s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.video-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(24, 24, 27, 0.2);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
-}
-
-.video-card-thumb {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  background: #000;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.video-card-thumb-short {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 9 / 14;
-  background: #09090b;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.video-card-thumb img,
-.video-card-thumb-short img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.video-card:hover .video-card-thumb img,
-.video-card:hover .video-card-thumb-short img {
-  transform: scale(1.04);
-}
-
-.play-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.9;
-  transition: opacity 0.2s ease;
-}
-
-.video-card-thumb:hover .play-overlay {
-  opacity: 1;
-  background: rgba(0, 0, 0, 0.4);
-}
-
-.play-circle {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.95);
-  color: #18181B;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease;
-}
-
-.video-card-thumb:hover .play-circle,
-.video-card-thumb-short:hover .play-circle {
-  transform: scale(1.1);
-}
-
-.card-badge {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(6px);
-  color: #FFF;
-  font-size: 11px;
-  padding: 3px 8px;
-  border-radius: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.yt-link-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 8px;
-  font-size: 12px;
-  font-family: var(--font-mono);
-  font-weight: 600;
-  color: #dc2626;
-  transition: color 0.15s ease;
-}
-
-.video-card:hover .yt-link-badge {
-  color: #b91c1c;
-}
-
-a.no-underline,
-a.no-underline:hover {
-  text-decoration: none;
-  color: inherit;
-}
-
-.video-card-body {
-  padding: 18px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.video-card-title {
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--ink);
-  margin-bottom: 6px;
-}
-
-.video-card-desc {
-  font-size: 13.5px;
-  line-height: 1.5;
-  color: var(--ink-secondary);
-  font-weight: 350;
-  margin-bottom: 14px;
-  flex: 1;
-}
-
-.video-card-link {
-  font-size: 12.5px;
-  font-family: var(--font-mono);
-  color: var(--ink-muted);
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.15s ease;
-}
-
-.video-card-link:hover {
-  color: var(--ink);
-}
 
 /* ==========================================================================
    Modal Player
@@ -781,10 +601,304 @@ a.no-underline:hover {
   background: #000;
 }
 
+/* Dikey içerik (YouTube Shorts / Instagram Reels) için daralan modal */
+.modal-container.modal-vertical {
+  max-width: 420px;
+}
+
+.modal-iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  max-height: 80vh;
+  border: 0;
+  border-radius: 8px;
+  background: #000;
+}
+
+.modal-iframe.hidden {
+  display: none;
+}
+
 .modal-footer {
   padding: 12px 20px;
   border-top: 1px solid var(--border-subtle);
   background: var(--surface);
   display: flex;
   justify-content: flex-end;
+}
+
+/* ==========================================================================
+   Portfolyo Bileşenleri — Şerit (Rail), Öne Çıkan Bloklar, Reels Poster
+   ========================================================================== */
+
+/* --- Bölüm başlığı satırı: metin solda, yardımcı bağlantı sağda --- */
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 34px;
+}
+
+.section-head-link {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  padding-bottom: 4px;
+  transition: color 0.15s ease;
+}
+
+.section-head-link:hover {
+  color: var(--ink);
+}
+
+/* --- Yatay kaydırmalı şerit --- */
+.rail-wrap {
+  position: relative;
+  /* Şeridin kartları kesilmeden bölüm kenarına kadar uzanabilmesi için */
+  margin: 0 -20px;
+  padding: 0 20px;
+}
+
+@media (min-width: 640px) {
+  .rail-wrap {
+    margin: 0 -32px;
+    padding: 0 32px;
+  }
+}
+
+.rail {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  /* Kendiliğinden akan sonsuz döngü ile snap noktaları çakışacağı için
+     kaydırma serbest bırakıldı; scroll-behavior JS tarafından yönetiliyor. */
+  scroll-behavior: smooth;
+  padding-bottom: 6px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+}
+
+.rail.rail-dragging {
+  cursor: grabbing;
+}
+
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+.rail-card {
+  flex: 0 0 auto;
+  width: 208px;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (min-width: 640px) {
+  .rail-card { width: 236px; }
+}
+
+@media (min-width: 1024px) {
+  .rail-card { width: 258px; }
+}
+
+.rail-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #09090b;
+  border: 1px solid var(--border);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.rail-card:hover .rail-thumb {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
+}
+
+.rail-thumb > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.rail-card:hover .rail-thumb > img {
+  transform: scale(1.05);
+}
+
+/* Oynat düğmesi — normalde soluk, hover'da belirginleşir */
+.rail-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.92);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: #18181B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+.rail-card:hover .rail-play {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.rail-badge {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  background: rgba(0, 0, 0, 0.62);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #FFF;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  padding: 3px 7px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.rail-meta {
+  padding: 11px 2px 0;
+}
+
+.rail-cat {
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  color: var(--ink-faint);
+  margin-bottom: 4px;
+}
+
+.rail-title {
+  font-size: 13.5px;
+  line-height: 1.35;
+  font-weight: 500;
+  color: var(--ink);
+  /* Uzun başlıklar kartı uzatmasın */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Şerit ok düğmeleri */
+.rail-nav {
+  position: absolute;
+  top: calc((100% - 52px) / 2);
+  z-index: 5;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--ink);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.rail-nav:hover {
+  transform: scale(1.07);
+}
+
+.rail-prev { left: 4px; }
+.rail-next { right: 4px; }
+
+@media (min-width: 1024px) {
+  .rail-nav { display: flex; }
+}
+
+/* --- Instagram kapak görseli olmadığı durumda tipografik poster --- */
+/* assets/reels/<ID>.jpg eklenirse <img> onu kaplar, poster arkada kalır. */
+.reel-poster {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 20% 10%, hsl(var(--h1, 260) 55% 32%) 0%, transparent 60%),
+    radial-gradient(110% 100% at 85% 95%, hsl(var(--h2, 200) 60% 28%) 0%, transparent 62%),
+    #101014;
+}
+
+.reel-poster > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+  transition: transform 0.35s ease;
+}
+
+.rail-card:hover .reel-poster > img {
+  transform: scale(1.05);
+}
+
+.reel-poster-mark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(255, 255, 255, 0.28);
+  z-index: 1;
+}
+
+.reel-poster-mark--sm {
+  color: rgba(255, 255, 255, 0.34);
+}
+
+
+/* ==========================================================================
+   İnce, sayfayla uyumlu kaydırma çubuğu
+   ========================================================================== */
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(24, 24, 27, 0.22) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(24, 24, 27, 0.18);
+  border-radius: 99px;
+  border: 3px solid var(--surface);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(24, 24, 27, 0.32);
 }
