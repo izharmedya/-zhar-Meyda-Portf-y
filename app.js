@@ -242,7 +242,7 @@ function initRails() {
     const cards = Array.from(rail.querySelectorAll('.rail-card, .media-card'));
     if (cards.length === 0) return;
 
-    const sectionTitle = wrap.closest('section')?.querySelector('h2')?.textContent?.trim() || 'Video seçkisi';
+    const sectionTitle = rail.getAttribute('aria-label') || wrap.getAttribute('aria-label') || wrap.closest('section')?.querySelector('h2')?.textContent?.trim() || 'Video seçkisi';
     rail.setAttribute('aria-label', sectionTitle);
 
     cards.forEach(card => {

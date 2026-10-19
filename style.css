@@ -239,6 +239,7 @@ button { cursor: pointer; }
 .section-surface { background-color: var(--surface); }.section-alt { background-color: var(--surface-alt); }
 .collection-section { padding: 132px 0 140px; border-top: 1px solid var(--border-soft); }
 .section-heading-row { margin-bottom: 46px; display: flex; align-items: flex-end; justify-content: space-between; gap: 28px; }
+.instagram-rail-heading { margin-top: 68px; }
 .eyebrow { margin: 0 0 17px; color: var(--ink-fade); font-family: var(--font-mono); font-size: 11px; font-weight: 400; letter-spacing: .11em; line-height: 1.35; }
 .section-heading-row h2, .small-case-inner h2 { max-width: 680px; margin: 0 0 15px; font-size: clamp(37px, 4vw, 56px); font-weight: 400; letter-spacing: -.012em; line-height: 1.08; }
 .section-copy { max-width: 540px; margin: 0; color: var(--ink-muted); font-size: 17px; letter-spacing: -.02em; line-height: 1.45; }
