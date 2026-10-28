@@ -373,3 +373,39 @@ button { cursor: pointer; }
   .rail-wrap .media-grid, .rail-wrap .media-grid-three { gap: 13px; }
   .rail-wrap .media-grid > .media-card { flex: 0 0 74%; }
 }
+
+.topic-heading { margin-top: 80px; }
+@media (max-width: 620px) { .topic-heading { margin-top: 54px; } }
+
+/* Featured film-reference work */
+.feature-case { padding: 96px 0 100px; border-top: 1px solid var(--border-soft); }
+.feature-intro { position: relative; padding-right: 190px; margin-bottom: 38px; }
+.feature-intro .eyebrow { margin-bottom: 24px; }
+.feature-intro h2 { margin: 0; font-size: clamp(37px, 4.3vw, 60px); font-weight: 400; letter-spacing: -.012em; line-height: 1.1; }
+.feature-project-meta { position: absolute; right: 0; bottom: 6px; display: grid; gap: 8px; color: var(--ink-fade); font-family: var(--font-mono); font-size: 10px; letter-spacing: .06em; }
+.feature-video { margin: 0; }
+.feature-video video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #10120f; border: 1px solid var(--border-soft); border-radius: 12px; }
+.feature-video figcaption { display: flex; justify-content: space-between; gap: 16px; padding: 16px 0 22px; color: var(--ink-fade); font-family: var(--font-mono); font-size: 10px; letter-spacing: .06em; line-height: 1.5; }
+.feature-story { display: grid; grid-template-columns: 1fr 2fr; gap: 48px; padding-top: 30px; border-top: 1px solid var(--border-soft); }
+.feature-story-label .eyebrow { display: block; margin-bottom: 12px; }
+.feature-story-label p { margin: 0; color: var(--ink); font-size: 25px; line-height: 1.2; }
+.feature-copy { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; color: var(--ink-muted); font-size: 16px; line-height: 1.6; }
+.feature-copy p { margin: 0; }
+@media (max-width: 900px) {
+  .feature-intro { padding-right: 0; }
+  .feature-project-meta { position: static; display: flex; flex-wrap: wrap; gap: 18px; margin-top: 22px; }
+  .feature-story { grid-template-columns: 1fr; gap: 24px; }
+  .feature-story-label p br { display: none; }
+}
+@media (max-width: 620px) {
+  .feature-case { padding: 68px 0 76px; }
+  .feature-intro { margin-bottom: 26px; }
+  .feature-intro h2 { font-size: clamp(31px, 8vw, 42px); }
+  .feature-intro .eyebrow { margin-bottom: 18px; }
+  .feature-project-meta { font-size: 9px; }
+  .feature-video video { border-radius: 8px; }
+  .feature-video figcaption { flex-direction: column; gap: 5px; font-size: 9px; padding-bottom: 20px; }
+  .feature-story { padding-top: 24px; }
+  .feature-story-label p { font-size: 23px; }
+  .feature-copy { grid-template-columns: 1fr; gap: 14px; }
+}
